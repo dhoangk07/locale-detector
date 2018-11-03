@@ -18,6 +18,7 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'letter_opener'     , '~> 1.6'
 end
 
 group :development do
@@ -28,7 +29,11 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
+  gem 'minitest'          , '~> 5.11', '>= 5.11.3'
+  gem 'minitest-reporters', '~> 1.3', '>= 1.3.5'
+  gem 'simplecov'         , require: false, group: :test
+  gem 'm'                 , '~> 1.5', '>= 1.5.1'
+  gem 'capybara'          , '>= 2.15'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
 end
