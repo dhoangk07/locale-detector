@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Url</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @repos.each_with_index do |repo,index| %>
+      <tr>
+        <td><%= index +1 %></td>
+        <td><%= repo.url %></td>
+        <td><%= repo.name%></td>
+        <td><%= link_to 'Show', repo_path(repo) %></td>
+        <td><%= link_to "Edit", edit_repo_path(repo)%></td>
+        <td><%= link_to "Destroy", repo_path(repo),
+                method: :delete,
+                data: { confirm: "Are you sure? "} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
