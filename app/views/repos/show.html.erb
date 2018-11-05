@@ -1,0 +1,25 @@
+<div class="col-8 offset-2 pt-5">
+  <h3 class="text-center text-uppercase text-success"><%=@repo.name %></h3>
+  <table class="table table-striped">
+    <thead>
+      <tr class="text-center">
+        <th>Locale</th>
+        <th>Missing Keys</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @repo.compare.each do |locale, missing_keys|  %>
+        <tr>
+          <td>
+            <%= locale %> 
+          </td>
+           <td>
+            <% missing_keys.each do |element|  %>
+            <%= element %><br>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
