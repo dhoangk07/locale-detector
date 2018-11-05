@@ -1,6 +1,7 @@
 class Repo < ApplicationRecord
   def path
     return "tmp/#{name}/config/locales"
+  belongs_to :user
   end
 
   def run_compare
