@@ -1,5 +1,6 @@
 class Repo < ApplicationRecord
   belongs_to :user
+  has_many :subscribes
   serialize :compare, Hash
 
   def locale_path
@@ -34,19 +35,19 @@ class Repo < ApplicationRecord
   end
 
   def self.routine_task
-    Repo.each do |repo|
-      if Dir.exists?(repo.cloned_source_path)
-        # TODO: fetch
-      else
-        repo.run_clone
-      end
+    Repo.all.each do |repo|
+      # if Dir.exists?(repo.cloned_source_path)
+      #   # TODO: fetch
+      # else
+        # repo.run_clone
+        UserMailer.notify_missing_key_on_locale_for_owner(repo.user).deliver_now
+      # end
       # do next
       # 1. run compare
       # 2. if have missing keys, send email to owner & subscribers
       # 3. There is a link to Repo/show in the email.
       # 
       # 4. Repo/show: display missing keys
-      repo.run_compare
     end
   end
 
