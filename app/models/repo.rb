@@ -2,6 +2,7 @@ class Repo < ApplicationRecord
   def path
     return "tmp/#{name}/config/locales"
   belongs_to :user
+  serialize :compare, Hash
   end
 
   def run_compare
