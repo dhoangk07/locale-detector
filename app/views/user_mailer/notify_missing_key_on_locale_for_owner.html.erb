@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Hello <%= @user.email %></h1>
+    <p>
+      We would like to inform that file locale on your repos
+       <%= @user.repos %> had missed key from locale 
+      file, please take a look at below for more detail
+    </p>
+    <p>
+    <% @user.repos.each do |repo| %>
+      <%= repo.run_compare %>
+    <% end %>
+    </p>
+    <p>Thank you</p>
+  </body>
+</html>
