@@ -1,5 +1,5 @@
 class ReposController < ApplicationController
-  # before_action :set_repos, only: %i[edit update show destroy]
+  before_action :set_repo, only: %i[edit update show destroy]
   def index
     @repos = Repo.all
   end
@@ -23,8 +23,8 @@ class ReposController < ApplicationController
   # def update
   # end
   
-  # def show
-  # end
+  def show
+  end
   
   # def destroy
   # end
@@ -35,6 +35,6 @@ class ReposController < ApplicationController
     end
     
     def repo_params
-      params.require(:repo).permit(:url, :name)
+      params.require(:repo).permit(:url, :name, :user_id, :compare)
     end
 end
