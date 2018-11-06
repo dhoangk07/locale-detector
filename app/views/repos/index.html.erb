@@ -3,19 +3,19 @@
     <h3 class="text-uppercase text-success text-center">Listing of Repos</h3>
     <table class="table table-striped">
       <thead>
-        <tr>
-          <th>No</th>
-          <th class="text-center">Url</th>
-          <th>Name</th>
-          <th colspan="3" class="text-center">Action</th>
+        <tr class="text-center">
+          <th >No</th>
+          <th >Url</th>
+          <th >Name</th>
+          <th colspan="3" >Action</th>
         </tr>
       </thead>
       <tbody>
         <% @repos.each_with_index do |repo,index| %>
           <tr>
-            <td><%= index +1 %></td>
+            <td class="text-center"><%= index +1 %></td>
             <td><%= repo.url %></td>
-            <td><%= repo.name%></td>
+            <td class="text-center"><%= repo.name%></td>
             <td><%= link_to 'Show', repo_path(repo) %></td>
             <td><%= link_to "Edit", edit_repo_path(repo)%></td>
             <td><%= link_to "Destroy", repo_path(repo),
