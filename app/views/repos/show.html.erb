@@ -1,5 +1,12 @@
 <div class="col-8 offset-2 pt-5">
   <h3 class="text-center text-uppercase text-success"><%=@repo.name %></h3>
+  <h3>
+    <% if subscribed_by_user?(current_user, @repo) %> 
+      <%= link_to 'Unsubsbribe', unsubscribe_repo_path(@repo), class: 'btn btn-danger' %>
+    <% else %>
+      <%= link_to 'Subscribe', subscribe_repo_path(@repo), class: 'btn btn-success' %>
+    <% end %>    
+  </h3>
   <table class="table table-striped">
     <thead>
       <tr class="text-center">
@@ -10,9 +17,7 @@
     <tbody>
       <% @repo.compare.each do |locale, missing_keys|  %>
         <tr>
-          <td>
-            <%= locale %> 
-          </td>
+          <td><%= locale %></td>
            <td>
             <% missing_keys.each do |element|  %>
             <%= element %><br>

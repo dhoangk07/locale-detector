@@ -1,5 +1,5 @@
 class ReposController < ApplicationController
-  before_action :set_repo, only: %i[edit update show destroy]
+  before_action :set_repo, only: %i[edit update show destroy subscribe unsubscribe]
   def index
     @repos = Repo.all
   end
@@ -16,7 +16,17 @@ class ReposController < ApplicationController
       flash.now[:error] = @repo.errors.full_messages.join(", ")
     end
   end 
-  
+
+  def subscribe
+    @repo.subscribes.create(user_id: current_user.id)
+    redirect_to repo_path(@repo)
+  end
+
+  def unsubscribe
+    @repo.subscribes.where(user_id: current_user.id).destroy_all
+    redirect_to repo_path(@repo)
+  end
+
   # def edit
   # end
   
