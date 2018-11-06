@@ -9,7 +9,6 @@ class ReposController < ApplicationController
   end
   
   def create
-        # debugger
     @repo = Repo.new(repo_params)
     if @repo.save
       redirect_to repos_path
@@ -43,11 +42,11 @@ class ReposController < ApplicationController
   end
   
   private
-    def set_repo
-      @repo = Repo.find(params[:id])
-    end
-    
-    def repo_params
-      params.require(:repo).permit(:url, :name, :user_id, :compare)
-    end
+  def set_repo
+    @repo = Repo.find(params[:id])
+  end
+  
+  def repo_params
+    params.require(:repo).permit(:url, :name, :user_id, :compare)
+  end
 end
