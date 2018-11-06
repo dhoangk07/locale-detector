@@ -1,7 +1,9 @@
-<div class="container-fluid col-lg-6 pt-5">
+<div class="container-fluid col-lg-6 pt-3">
   <%= simple_form_for @repo do |f| %>
     <%= f.input :url, label: false, placeholder: "Enter Url"  %>
+    <%= f.input :user, value: current_user.id, :as => :hidden %>
     <%= f.input :name, label: false, placeholder: "Enter Name"  %>
-    <%= f.submit 'Create', class: 'btn btn-success' %>
+    <%= f.submit 'Create', class: 'btn btn-success btn-block' %>
   <% end %>
 </div>
+

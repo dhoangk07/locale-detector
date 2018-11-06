@@ -9,6 +9,7 @@ class ReposController < ApplicationController
   end
   
   def create
+        # debugger
     @repo = Repo.new(repo_params)
     if @repo.save
       redirect_to repos_path
@@ -27,19 +28,15 @@ class ReposController < ApplicationController
     redirect_to repo_path(@repo)
   end
 
-  # def edit
-  # end
   def edit
   end
   
-  # def update
-  # end
+  def update
+  end
   
   def show
   end
   
-  # def destroy
-  # end
   def destroy
     @repo.destroy
     redirect_to repos_path
