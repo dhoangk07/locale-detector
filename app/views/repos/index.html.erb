@@ -14,7 +14,7 @@
         <% @repos.each_with_index do |repo,index| %>
           <tr>
             <td class="text-center"><%= index +1 %></td>
-            <td><%= repo.url %></td>
+            <td><a href="<%= repo.url %>" target="_blank"><%= repo.url %></a></td>
             <td class="text-center"><%= repo.name%></td>
             <td><%= link_to 'Show', repo_path(repo) %></td>
             <td><%= link_to "Edit", edit_repo_path(repo)%></td>
