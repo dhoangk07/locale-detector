@@ -29,6 +29,8 @@ class ReposController < ApplicationController
 
   # def edit
   # end
+  def edit
+  end
   
   # def update
   # end
@@ -38,6 +40,10 @@ class ReposController < ApplicationController
   
   # def destroy
   # end
+  def destroy
+    @repo.destroy
+    redirect_to repos_path
+  end
   
   private
     def set_repo
