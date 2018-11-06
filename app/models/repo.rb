@@ -41,6 +41,9 @@ class Repo < ApplicationRecord
       # else
         # repo.run_clone
         UserMailer.notify_missing_key_on_locale_for_owner(repo.user).deliver_now
+        user_subscribed_id = self.subscribes.last.user_id
+        user_subscribed = User.find(user_subscribed_id)
+        UserMailer.notify_missing_key_on_locale_for_subscribe(user_subscribed).deliver_now
       # end
       # do next
       # 1. run compare
