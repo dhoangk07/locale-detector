@@ -4,5 +4,5 @@ Rails.application.routes.draw do
     get :subscribe, on: :member
     get :unsubscribe, on: :member
   end
-  root to: 'welcomes#index'
+  root to: "repos#index"
 end
