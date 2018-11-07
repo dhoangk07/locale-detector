@@ -16,7 +16,7 @@ class ReposController < ApplicationController
     if @repo.save
       redirect_to repos_path
     else
-      flash.now[:error] = @repo.errors.full_messages.join(", ")
+      render :new
     end
   end 
 
