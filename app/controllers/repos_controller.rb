@@ -34,6 +34,12 @@ class ReposController < ApplicationController
   end
   
   def update
+    @repo.update_attributes(repo_params)
+    if @repo.save
+      redirect_to repos_path
+    else
+      render :edit
+    end
   end
   
   def show
