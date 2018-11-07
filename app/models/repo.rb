@@ -54,6 +54,8 @@ class Repo < ApplicationRecord
     end
   end
 
-  
+  def self.search(search)
+    search ? self.where('name ILIKE ?', "%#{search}%") : self
+  end
 end
 

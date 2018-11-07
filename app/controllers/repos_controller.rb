@@ -2,6 +2,9 @@ class ReposController < ApplicationController
   before_action :set_repo, only: %i[edit update show destroy subscribe unsubscribe]
   def index
     @repos = Repo.all
+    if params[:search].present?
+      @repos = @repos.search(params[:search])
+    end
   end
   
   def new
@@ -40,7 +43,7 @@ class ReposController < ApplicationController
     @repo.destroy
     redirect_to repos_path
   end
-  
+
   private
   def set_repo
     @repo = Repo.find(params[:id])
