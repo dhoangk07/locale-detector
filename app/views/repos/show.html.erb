@@ -1,32 +1,4 @@
 <div class="col-8 offset-2 pt-5">
-  <h3 class="text-center text-uppercase text-success"><%=@repo.name %></h3>
-  <h3>
-    <% if subscribed_by_user?(current_user, @repo) %> 
-      <%= link_to 'Unsubsbribe', unsubscribe_repo_path(@repo), class: 'btn btn-danger' %>
-    <% else %>
-      <%= link_to 'Subscribe', subscribe_repo_path(@repo), class: 'btn btn-success' %>
-    <% end %>    
-  </h3>
-  <table class="table table-striped">
-    <thead>
-      <tr class="text-center">
-        <th>No</th>
-        <th>Locale</th>
-        <th class="text-left">Missing Keys</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @repo.compare.each_with_index do |(locale, missing_keys), index|  %>
-        <tr>
-          <td class="text-center"><%= index+1 %></td>
-          <td class="text-center"><%= locale %></td>
-           <td >
-            <% missing_keys.each do |element|  %>
-            <%= element %><br>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render 'btn', repo: @repo %>   
+  <%= render 'table', repo: @repo %>
 </div>

@@ -3,6 +3,10 @@ class Repo < ApplicationRecord
   has_many :subscribes
   serialize :compare, Hash
 
+  def read_file_read_me
+    File.read("#{cloned_source_path}/README.md")
+  end
+  
   def locale_path
     "#{cloned_source_path}/config/locales"
   end

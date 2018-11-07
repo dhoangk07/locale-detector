@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+    <tr class="text-center">
+      <th>No</th>
+      <th>Locale</th>
+      <th class="text-left">Missing Keys</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @repo.compare.each_with_index do |(locale, missing_keys), index|  %>
+      <tr>
+        <td class="text-center"><%= index+1 %></td>
+        <td class="text-center"><%= locale %></td>
+        <td >
+          <% missing_keys.each do |element|  %>
+            <%= element %><br>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

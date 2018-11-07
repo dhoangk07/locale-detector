@@ -1,0 +1,29 @@
+<h3 class="text-center text-uppercase text-success"><%= @repo.name %></h3>
+<div>
+  <% if subscribed_by_user?(current_user, @repo) %> 
+    <%= link_to 'Unsubsbribe', unsubscribe_repo_path(@repo), class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'Subscribe', subscribe_repo_path(@repo), class: 'btn btn-success' %>
+  <% end %> 
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+    READ ME
+  </button>
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= @repo.read_file_read_me %>  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
