@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_05_170611) do
+ActiveRecord::Schema.define(version: 2018_11_08_104153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2018_11_05_170611) do
     t.string "name"
     t.integer "user_id"
     t.text "compare"
+    t.string "description"
+    t.string "homepage"
   end
 
   create_table "subscribes", force: :cascade do |t|
