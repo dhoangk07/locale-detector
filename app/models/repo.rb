@@ -3,6 +3,18 @@ class Repo < ApplicationRecord
   has_many :subscribes
   serialize :compare, Hash
 
+  def split(url)
+   %r{/([^/]+)/([^/]+)/?\z}o.match(url)[1]
+  end
+
+  def star_github_large
+    "https://ghbtns.com/github-btn.html?user=#{split(url)}&repo=#{name}&type=star&count=true&size=large"
+  end
+
+  def fork_github_large
+    "https://ghbtns.com/github-btn.html?user=#{split(url)}&repo=#{name}&type=fork&count=true&size=large"
+  end
+
   def read_file_read_me
     File.read("#{cloned_source_path}/README.md")
   end
