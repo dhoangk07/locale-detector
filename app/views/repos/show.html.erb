@@ -1,4 +1,7 @@
 <div class="col-8 offset-2 pt-5">
-  <%= render 'btn', repo: @repo %>   
+  <%= render 'btn', repo: @repo %><br>
+  <%= @repo.description %>
+  <a href="<%= @repo.homepage %>"><%= @repo.homepage %></a> 
   <%= render 'table', repo: @repo %>
+ 
 </div>

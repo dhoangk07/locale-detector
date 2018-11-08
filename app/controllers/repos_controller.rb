@@ -43,6 +43,7 @@ class ReposController < ApplicationController
   end
   
   def show
+    @repo.fetch_from_github
   end
   
   def destroy
