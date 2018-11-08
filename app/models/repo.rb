@@ -2,6 +2,17 @@ class Repo < ApplicationRecord
   belongs_to :user
   has_many :subscribes
   serialize :compare, Hash
+  
+  def fetch_from_github
+    array_datas = Github.repos.list user: "#{split(url)}"
+    array_datas.body.each do |array_data|
+      if array_data.clone_url == url
+        description = array_data.description
+        homepage = array_data.homepage
+        self.update(description: description, homepage: homepage)
+      end
+    end
+  end
 
   def split(url)
    %r{/([^/]+)/([^/]+)/?\z}o.match(url)[1]
