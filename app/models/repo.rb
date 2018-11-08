@@ -1,6 +1,6 @@
 class Repo < ApplicationRecord
   belongs_to :user
-  has_many :subscribes
+  has_many :subscribes, dependent: :destroy
   serialize :compare, Hash
   
   def fetch_from_github
