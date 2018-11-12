@@ -1,5 +1,5 @@
 <div class="col-8 offset-2 pt-5">
-  <h3 class="text-center text-uppercase text-success">
+  <h3 class="text-center text-uppercase text-success mb-3">
     <%= @repo.name %>
     <span class="float-left mr-2">
       <% if subscribed_by_user?(current_user, @repo) %> 
@@ -17,10 +17,10 @@
 
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Compare Locale</a>
+      <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Compare Locale</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+      <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Read Me</a>
@@ -28,8 +28,8 @@
   </ul>
 
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><%= render 'table', repo: @repo %></div>
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><%= render 'description', repo: @repo %></div>
+    <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab"><%= render 'table', repo: @repo %></div>
+    <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab"><%= render 'description', repo: @repo %></div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><%= markdown(@repo.read_file_read_me) %></div>
   </div>
 </div>
