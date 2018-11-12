@@ -13,12 +13,12 @@
       <% @repos.each_with_index do |repo,index| %>
       <tr>
         <td class="text-center"><%= index +1 %></td>
-        <td><a href="<%= repo.url %>" target="_blank"><%= repo.url %></a></td>
+        <td ><a href="<%= repo.url %>" target="_blank"><%= repo.url %></a></td>
         <td class="text-center"><%= repo.name%></td>
-        <td><%= link_to 'Show', repo_path(repo) %></td>
-        <td><%= link_to "Edit", edit_repo_path(repo)%></td>
-        <td><%= link_to "Destroy", repo_path(repo), method: :delete,
-                         data: { confirm: "Are you sure? "} %></td>
+        <td class="text-center"><%= link_to 'Show', repo_path(repo), class:"badge badge-pill badge-info px-4" %><br>
+        <%= link_to "Edit", edit_repo_path(repo), class:"badge badge-pill badge-info px-4"%><br>
+        <%= link_to "Destroy", repo_path(repo), method: :delete,
+                         data: { confirm: "Are you sure? "}, class:"badge badge-pill badge-info px-3" %></td>
       </tr>
       <% end %>
     </tbody>
