@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :repos do
-    get :subscribe, on: :member
-    get :unsubscribe, on: :member
+    post :subscribe, on: :member
+    delete :unsubscribe, on: :member
   end
   root to: "repos#index"
 end
