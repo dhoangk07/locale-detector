@@ -1,6 +1,6 @@
 <div class="col-8 offset-2 pt-5">
-  <h3 class="text-center text-uppercase text-success mb-3">
-    <%= @repo.name %>
+  <h3 class="text-center text-primary mb-3">
+    <span class="text-uppercase "><%= @repo.name %></span> 
     <span class="float-left mr-2">
       <% if subscribed_by_user?(current_user, @repo) %> 
         <%= link_to 'Unsubsbribe', unsubscribe_repo_path(@repo), method: :delete, class: 'btn btn-danger' %>

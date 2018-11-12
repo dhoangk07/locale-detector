@@ -1,0 +1,13 @@
+<div class="container text-center offset-1">
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %> my-0 py-0">
+      <a href="#" data-dismiss="alert" class="close">×</a>
+        <ul class="my-1 bullet-off">
+          <li>
+            <%= value %>
+          </li>
+        </ul>
+    </div>
+  <% end %>
+</div>
+  

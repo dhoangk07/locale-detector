@@ -1,26 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <form class="navbar-form navbar-left">
-      <div class="form-inline my-2 my-lg-0">
-        <%= form_tag repos_path, :class =>"form-control", :method => 'get' do %>
-          <%= text_field_tag :search, params[:search], :class =>"form-control", :placeholder=>"Search" %>
-        <% end %>
-      </div>
-    </form>
-  </div>
-  <div class="float-right">
-    <% if user_signed_in? %>
-      <div class="btn-group">
-        <a href="#"><%= link_to 'New Repo', new_repo_path, class: "dropdown-item text-primary" %></a> 
-        <a href="#"><%=link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'dropdown-item text-danger'%></a>
-      </div>
-    <% else %>
-      <div class="btn-group">
-        <a  href="#"><%= link_to "Sign In", new_user_session_path, class: "dropdown-item text-success" %></a>
-        <a href="#"><%=link_to 'Sign Up', new_user_registration_path, class: 'dropdown-item text-success'%></a>
-      </div>
-    <% end %>
-  </div>
-</nav>
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <form class="navbar-form navbar-left">
+        <div class="form-inline my-2 my-lg-0">
+          <%= form_tag repos_path, :class =>"form-control", :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], :class =>"form-control", :placeholder=>"Search" %>
+          <% end %>
+        </div>
+      </form>
 
-
+      <%= render 'layouts/messages' %>
+    </div>
+    <div class="float-right">
+      <% if user_signed_in? %>
+        <div class="btn-group">
+          <a href="#"><%= link_to 'New Repo', new_repo_path, class: "dropdown-item text-primary" %></a> 
+          <a href="#"><%=link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'dropdown-item text-danger'%></a>
+        </div>
+      <% else %>
+        <div class="btn-group">
+          <a  href="#"><%= link_to "Sign In", new_user_session_path, class: "dropdown-item text-success" %></a>
+          <a href="#"><%=link_to 'Sign Up', new_user_registration_path, class: 'dropdown-item text-success'%></a>
+        </div>
+      <% end %>
+    </div>
+  </nav>
+</div>

@@ -14,6 +14,7 @@ class ReposController < ApplicationController
   def create
     @repo = current_user.repos.build(repo_params)
     if @repo.save
+      flash[:success] = "You've already successfully created repo!"
       redirect_to repos_path
     else
       render :new
@@ -22,11 +23,13 @@ class ReposController < ApplicationController
 
   def subscribe
     @repo.subscribes.create(user_id: current_user.id)
+    flash[:success] = "You've already successfully subscribed for this repo!"
     redirect_to repo_path(@repo)
   end
 
   def unsubscribe
     @repo.subscribes.where(user_id: current_user.id).destroy_all
+    flash[:danger] = "You've already successfully unsubscribed for this repo!"
     redirect_to repo_path(@repo)
   end
 
@@ -36,6 +39,7 @@ class ReposController < ApplicationController
   def update
     @repo.update_attributes(repo_params)
     if @repo.save
+      flash[:success] = "You've already successfully updated for this repo!"
       redirect_to repos_path
     else
       render :edit
@@ -48,6 +52,7 @@ class ReposController < ApplicationController
   
   def destroy
     @repo.destroy
+    flash[:danger] = "You've already successfully deleted this repo!"
     redirect_to repos_path
   end
 
