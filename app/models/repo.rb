@@ -93,6 +93,9 @@ class Repo < ApplicationRecord
     end
   end
 
+  def delete_folder_github
+    FileUtils.rm_rf("#{cloned_source_path}")
+  end
   def self.search(search)
     search ? self.where('name ILIKE ?', "%#{search}%") : self
   end

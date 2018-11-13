@@ -52,6 +52,7 @@ class ReposController < ApplicationController
   
   def destroy
     @repo.destroy
+    @repo.delete_folder_github
     flash[:danger] = "You've already successfully deleted this repo!"
     redirect_to repos_path
   end
