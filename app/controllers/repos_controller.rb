@@ -13,12 +13,14 @@ class ReposController < ApplicationController
   
   def create
     @repo = current_user.repos.build(repo_params)
+    @repo.url << ".git" 
     if @repo.save
       flash[:success] = "You've already successfully created repo!"
       redirect_to repos_path
     else
       render :new
     end
+
   end 
 
   def subscribe
