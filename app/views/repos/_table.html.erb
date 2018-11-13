@@ -1,21 +1,31 @@
 <table class="table table-striped" >
   <thead>
     <tr class="text-center border-off">
-      <th>No</th>
+      <th></th>
       <th>Locale</th>
+      <th></th>
+      <th></th>
       <th class="text-left">Missing Keys</th>
+      <th><%= link_to "All Repos", repos_path, class: "badge badge-pill badge-primary " %> 
+      <%= link_to "Edit Repos", edit_repo_path(@repo), class: "badge badge-pill badge-warning " %> 
+      <%= link_to "Destroy", repo_path(@repo), method: :delete,
+                                   data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-danger " %> 
+      </th>
     </tr>
   </thead>
   <tbody>
-    <% @repo.compare.each_with_index do |(locale, missing_keys), index|  %>
+    <% @repo.compare.each do |locale, missing_keys|  %>
       <tr>
-        <td class="text-center"><%= index+1 %></td>
+        <td class="text-center"></td>
         <td class="text-center"><%= locale %></td>
-        <td >
+        <td></td>
+        <td></td>
+        <td>
           <% missing_keys.each do |element|  %>
             <%= element %><br>
           <% end %>
         </td>
+        <td></td>
       </tr>
     <% end %>
   </tbody>
