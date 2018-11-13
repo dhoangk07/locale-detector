@@ -9,7 +9,8 @@ class Repo < ApplicationRecord
   #   t.string "description"
   #   t.string "homepage"
   # end
-  validates :url, uniqueness: true
+  # validates :url, uniqueness: true
+  validate :valid_url?
   validates :name, uniqueness: true
   belongs_to :user
   has_many :subscribes, dependent: :destroy
@@ -95,6 +96,10 @@ class Repo < ApplicationRecord
 
   def delete_folder_github
     FileUtils.rm_rf("#{cloned_source_path}")
+  end
+  def valid_url?
+    url_regexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+    errors.add(:url, "Please input correct Url") unless self.url =~ url_regexp 
   end
   def self.search(search)
     search ? self.where('name ILIKE ?', "%#{search}%") : self
