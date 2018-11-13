@@ -3,9 +3,9 @@
     <span class="text-uppercase "><%= @repo.name %></span> 
     <span class="float-left mr-2">
       <% if subscribed_by_user?(current_user, @repo) %> 
-        <%= link_to 'Unsubsbribe', unsubscribe_repo_path(@repo), method: :delete, class: 'btn btn-danger' %>
+        <%= link_to 'Unsubsbribe', unsubscribe_repo_path(@repo), method: :delete, class: 'btn btn-danger btn-sm' %>
       <% else %>
-        <%= link_to 'Subscribe', subscribe_repo_path(@repo), method: :post, class: 'btn btn-success' %>
+        <%= link_to 'Subscribe', subscribe_repo_path(@repo), method: :post, class: 'btn btn-success btn-sm' %>
       <% end %> 
     </span>  
   </h3>
