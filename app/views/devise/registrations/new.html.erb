@@ -11,9 +11,6 @@
         <em class="">(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
       </div>
-      <%= f.input :photo, label: false, as: :file, class: "form-control" %>
-      <div class="actions">
-        <%= f.submit "Sign up", class: 'btn btn-success waves-effect waves-light btn-block btn-lg mt-lg-3' %>
-      </div>
+      <%= f.submit "Sign up", class: 'btn btn-success waves-effect waves-light btn-block btn-lg mt-lg-3' %>
     <% end %>
 </div>
