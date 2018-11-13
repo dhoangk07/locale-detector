@@ -1,4 +1,14 @@
 class Repo < ApplicationRecord
+  # create_table "repos", force: :cascade do |t|
+  #   t.string "url"
+  #   t.datetime "created_at", null: false
+  #   t.datetime "updated_at", null: false
+  #   t.string "name"
+  #   t.integer "user_id"
+  #   t.text "compare"
+  #   t.string "description"
+  #   t.string "homepage"
+  # end
   validates :url, uniqueness: true
   validates :name, uniqueness: true
   belongs_to :user
