@@ -1,36 +1,41 @@
 /*flash*/
 .alert-error {
-  background-color: #f2dede;
-  border-color: #eed3d7;
-  color: #b94a48;
-  text-align: center;
+  background-color   : #f2dede;
+  border-color       : #eed3d7;
+  color              : #b94a48;
+  text-align         : center;
   ul {list-style-type: none;}
 }
 
 .alert-alert {
-  background-color: #f2dede;
-  border-color: #eed3d7;
-  color: #b94a48;
-  text-align: center;
+  background-color   : #f2dede;
+  border-color       : #eed3d7;
+  color              : #b94a48;
+  text-align         : center;
   ul {list-style-type: none;}
 }
 
 .alert-success {
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  color: #468847;
-  text-align: center;
+  background-color   : #dff0d8;
+  border-color       : #d6e9c6;
+  color              : #468847;
+  text-align         : center;
   ul {list-style-type: none;}
 }
 
 .alert-notice {
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  color: #468847;
-  text-align: center;
+  background-color   : #dff0d8;
+  border-color       : #d6e9c6;
+  color              : #468847;
+  text-align         : center;
   ul {list-style-type: none;}
 }
 
 .bullet-off{
   list-style-type: none;
+}
+
+.placeholder input::placeholder {
+  color  : #dc3545; 
+  opacity: 0.5;
 }
