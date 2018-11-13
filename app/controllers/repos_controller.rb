@@ -1,7 +1,7 @@
 class ReposController < ApplicationController
   before_action :set_repo, only: %i[edit update show destroy subscribe unsubscribe]
   def index
-    @repos = Repo.all
+    @repos = Repo.order(created_at: :DESC)
     if params[:search].present?
       @repos = @repos.search(params[:search])
     end
