@@ -2,15 +2,12 @@
   <thead>
     <tr class="text-center border-off">
       <th></th>
-      <th>Locale</th>
+      <th class="text-primary">Locale</th>
       <th></th>
       <th></th>
-      <th class="text-left">Missing Keys</th>
-      <th><%= link_to "All Repos", repos_path, class: "badge badge-pill badge-primary " %> 
-      <%= link_to "Edit Repos", edit_repo_path(@repo), class: "badge badge-pill badge-warning " %> 
-      <%= link_to "Destroy", repo_path(@repo), method: :delete,
-                                   data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-danger " %> 
-      </th>
+      <th class="text-left text-primary">Missing Keys</th>
+      <th class="text-danger">Total: <%= @repo.compare.keys.count > 0 ?  "#{@repo.compare.keys.count} locales missing" : "#{@repo.compare.keys.count} locale missing"%></th>
+      <th><%= render 'action', repo: repo %> </th>
     </tr>
   </thead>
   <tbody>
@@ -25,6 +22,7 @@
             <%= element %><br>
           <% end %>
         </td>
+        <td></td>
         <td></td>
       </tr>
     <% end %>
