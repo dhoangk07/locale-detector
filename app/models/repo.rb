@@ -40,7 +40,7 @@ class Repo < ApplicationRecord
   end
 
   def read_file_read_me
-    File.read("#{cloned_source_path}/README.md")
+    File.read("#{cloned_source_path}/README.md") if Dir.exist?("#{cloned_source_path}")
   end
   
   def locale_path
@@ -97,10 +97,12 @@ class Repo < ApplicationRecord
   def delete_folder_github
     FileUtils.rm_rf("#{cloned_source_path}")
   end
+
   def valid_url?
     url_regexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
     errors.add(:url, "Please input correct Url") unless self.url =~ url_regexp 
   end
+
   def self.search(search)
     search ? self.where('name ILIKE ?', "%#{search}%") : self
   end

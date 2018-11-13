@@ -9,6 +9,6 @@ module ApplicationHelper
                                        underline: true,
                                        highlight: true
                                       )
-    return markdown.render(text).html_safe
+    return markdown.render(text).html_safe if text.present?
   end
 end
