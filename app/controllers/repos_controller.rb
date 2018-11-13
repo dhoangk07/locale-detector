@@ -15,7 +15,7 @@ class ReposController < ApplicationController
     @repo = current_user.repos.build(repo_params)
     @repo.url << ".git" 
     if @repo.save
-      flash[:success] = "You've already successfully created repo!"
+      flash[:success] = "You've already successfully created #{@repo.name}"
       redirect_to repos_path
     else
       render :new
@@ -25,13 +25,13 @@ class ReposController < ApplicationController
 
   def subscribe
     @repo.subscribes.create(user_id: current_user.id)
-    flash[:success] = "You've already successfully subscribed for this repo!"
+    flash[:success] = "You've already successfully subscribed for #{@repo.name}"
     redirect_to repo_path(@repo)
   end
 
   def unsubscribe
     @repo.subscribes.where(user_id: current_user.id).destroy_all
-    flash[:danger] = "You've already successfully unsubscribed for this repo!"
+    flash[:danger] = "You've already successfully unsubscribed for #{@repo.name}"
     redirect_to repo_path(@repo)
   end
 
@@ -41,7 +41,7 @@ class ReposController < ApplicationController
   def update
     @repo.update_attributes(repo_params)
     if @repo.save
-      flash[:success] = "You've already successfully updated for this repo!"
+      flash[:success] = "You've already successfully updated for #{@repo.name}"
       redirect_to repos_path
     else
       render :edit
@@ -55,7 +55,7 @@ class ReposController < ApplicationController
   def destroy
     @repo.destroy
     @repo.delete_folder_github
-    flash[:danger] = "You've already successfully deleted this repo!"
+    flash[:danger] = "You've already successfully deleted #{@repo.name}"
     redirect_to repos_path
   end
 
