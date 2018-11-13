@@ -1,4 +1,6 @@
 class Repo < ApplicationRecord
+  validates :url, uniqueness: true
+  validates :name, uniqueness: true
   belongs_to :user
   has_many :subscribes, dependent: :destroy
   serialize :compare, Hash
