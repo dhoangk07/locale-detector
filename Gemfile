@@ -22,8 +22,8 @@ gem 'github_api'  , '~> 0.18.2'
 gem 'redcarpet'   , '~> 3.4'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'letter_opener'     , '~> 1.6'
+  gem 'byebug'       , platforms: [:mri, :mingw, :x64_mingw]
+  gem 'letter_opener', '~> 1.6'
 end
 
 group :development do
@@ -31,6 +31,9 @@ group :development do
   gem 'listen'               , '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'capistrano'           , '~> 3.11'
+  gem 'capistrano-rails'     , '~> 1.4'
+  gem 'capistrano-rbenv'     , '~> 2.1', '>= 2.1.4'
 end
 
 group :test do
