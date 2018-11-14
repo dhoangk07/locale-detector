@@ -13,14 +13,14 @@ class ReposController < ApplicationController
   
   def create
     @repo = current_user.repos.build(repo_params)
-    @repo.url << ".git" 
     if @repo.save
       flash[:success] = "You've already successfully created #{@repo.name}"
       redirect_to repos_path
     else
       render :new
     end
-
+    RunCloneCompareJob.perform_later(@repo)
+    RunFetchFromGithubJob.perform_later(@repo)
   end 
 
   def subscribe
@@ -49,12 +49,12 @@ class ReposController < ApplicationController
   end
   
   def show
-    @repo.fetch_from_github
+    
   end
   
   def destroy
     @repo.destroy
-    @repo.delete_folder_github
+    RunDeleteFolderGithubJob.perform_later(@repo)
     flash[:danger] = "You've already successfully deleted #{@repo.name}"
     redirect_to repos_path
   end
