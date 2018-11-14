@@ -31,7 +31,7 @@ class ReposController < ApplicationController
 
   def unsubscribe
     @repo.subscribes.where(user_id: current_user.id).destroy_all
-    flash[:danger] = "You've already successfully unsubscribed for #{@repo.name}"
+    flash[:danger] = "You've already unsubscribed for #{@repo.name}"
     redirect_to repo_path(@repo)
   end
 
