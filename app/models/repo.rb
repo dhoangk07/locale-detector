@@ -103,6 +103,13 @@ class Repo < ApplicationRecord
     errors.add(:url, "Please input correct Url") unless self.url =~ url_regexp 
   end
 
+  def decorate_repo
+    self.url[-1] == '/' ? self.url.chomp!('/') : self.url
+    url = self.url + ".git" 
+    name = self.name.gsub(/[-]/, ' ').gsub(/[_]/, ' ').humanize
+    self.update(url: url, name: name)
+  end
+  
   def self.search(search)
     search ? self.where('name ILIKE ?', "%#{search}%") : self
   end
