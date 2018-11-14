@@ -6,8 +6,8 @@
       <tr class="text-center border-off text-primary">
         <th></th>
         <th></th>
-        <th >Url</th>
-        <th class="text-right">Name</th>
+        <th class="text-left">Name</th>
+        <th class="text-right">Url</th>
         <th colspan="3" >Action</th>
       </tr>
     </thead>
@@ -16,8 +16,8 @@
       <tr >
         <td></td>
         <td></td>
-        <td class="text-left "><a href="<%= repo.url %>" target="_blank"><%= repo.url %></a></td>
-        <td class="text-right text-capitalize"><%= link_to repo.name, repo_path(repo)%></td>
+        <td class="text-left text-capitalize"><%= link_to repo.name, repo_path(repo)%></td>
+        <td class="text-right "><a href="<%= repo.url %>" target="_blank"><%= repo.url %></a></td>
         <td class="text-center">
           <%= render 'action', repo: repo %>
         </td>
