@@ -6,7 +6,7 @@
       <th></th>
       <th></th>
       <th class="text-left text-primary">Missing Keys</th>
-      <th class="text-danger">Total: <%= @repo.compare.keys.count > 0 ?  "#{@repo.compare.keys.count} locales missing" : "#{@repo.compare.keys.count} locale missing"%></th>
+      <th class="text-danger font-italic">Total: <%= @repo.compare.keys.count > 0 ?  "#{@repo.compare.keys.count} locales missing key" : "#{@repo.compare.keys.count} locale missing key"%></th>
       <th><%= render 'action', repo: repo %> </th>
     </tr>
   </thead>

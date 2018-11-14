@@ -4,16 +4,20 @@
   <table class="table table-striped">
     <thead>
       <tr class="text-center border-off text-primary">
-        <th class="text-right ">Url</th>
-        <th class="text-left">Name</th>
+        <th></th>
+        <th></th>
+        <th >Url</th>
+        <th class="text-right">Name</th>
         <th colspan="3" >Action</th>
       </tr>
     </thead>
     <tbody >
       <% @repos.each do |repo| %>
       <tr >
-        <td class="text-right "><a href="<%= repo.url %>" target="_blank"><%= repo.url %></a></td>
-        <td class="text-left text-capitalize"><%= link_to repo.name, repo_path(repo)%></td>
+        <td></td>
+        <td></td>
+        <td class="text-left "><a href="<%= repo.url %>" target="_blank"><%= repo.url %></a></td>
+        <td class="text-right text-capitalize"><%= link_to repo.name, repo_path(repo)%></td>
         <td class="text-center">
           <%= render 'action', repo: repo %>
         </td>
@@ -21,6 +25,6 @@
       <% end %>
     </tbody>
   </table>
-  <p class="text-sm-right text-center text-danger float-right pr-4"> Total: <%=Repo.count > 0 ?  "#{Repo.count} Repos" : "#{Repo.count} Repo"%> </p> 
+  <p class="text-sm-right text-center text-danger float-right pr-4 font-italic"> Total: <%=Repo.count > 0 ?  "#{Repo.count} Repos" : "#{Repo.count} Repo"%> </p> 
 </div>
 

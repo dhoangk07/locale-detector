@@ -1,6 +1,6 @@
 <div class="col-8 offset-2 pt-5">
   <h3 class="text-center text-primary mb-3">
-    <span class="text-uppercase "><%= @repo.name %></span> 
+    <span class="text-capitalize "><%= @repo.name %></span> 
     <span class="float-left mr-2">
       <% if subscribed_by_user?(current_user, @repo) %> 
         <%= link_to 'Unsubsbribe', unsubscribe_repo_path(@repo), method: :delete, class: 'btn btn-danger btn-sm' %>
@@ -11,8 +11,8 @@
   </h3>
 
   <span class="btn-github float-right ">
-    <iframe class="gem__ghbtn" src=<%=@repo.star_github_large%> frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
-    <iframe class="gem__ghbtn" src=<%=@repo.fork_github_large%> frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    <iframe class="gem__ghbtn" src=<%=@repo.star_github_small%> frameborder="0" scrolling="0" width="100px" height="30px"></iframe>
+    <iframe class="gem__ghbtn" src=<%=@repo.fork_github_small%> frameborder="0" scrolling="0" width="100px" height="30px"></iframe>
   </span>
 
   <ul class="nav nav-tabs" id="myTab" role="tablist">
