@@ -14,13 +14,13 @@ class ReposController < ApplicationController
   def create
     @repo = current_user.repos.build(repo_params)
     if @repo.save
+      Resque.enqueue(RunCloneCompare, @repo.id)
+      Resque.enqueue(RunFetchFromGithub, @repo.id)
       flash[:success] = "You've already successfully created #{@repo.name}"
       redirect_to repos_path
     else
       render :new
     end
-    RunCloneCompareJob.perform_later(@repo)
-    RunFetchFromGithubJob.perform_later(@repo)
   end 
 
   def subscribe
@@ -54,7 +54,7 @@ class ReposController < ApplicationController
   
   def destroy
     @repo.destroy
-    RunDeleteFolderGithubJob.perform_later(@repo)
+    Resque.enqueue(RunDeleteFolderGithub, @repo.id)
     flash[:danger] = "You've already successfully deleted #{@repo.name}"
     redirect_to repos_path
   end

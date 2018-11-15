@@ -20,6 +20,7 @@ gem 'rugged'      , '~> 0.27.5'
 gem 'faker'       , '~> 1.9', '>= 1.9.1'
 gem 'github_api'  , '~> 0.18.2'
 gem 'redcarpet'   , '~> 3.4'
+gem 'resque', '~> 2.0', require: 'resque/server'
 
 group :development, :test do
   gem 'byebug'       , platforms: [:mri, :mingw, :x64_mingw]

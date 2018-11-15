@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     delete :unsubscribe, on: :member
   end
   root to: "repos#index"
+  mount Resque::Server, at: '/resque'  
 end
