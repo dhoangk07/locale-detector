@@ -1,5 +1,5 @@
 class Repo < ApplicationRecord
-  # create_table "repos", force: :cascade do |t|
+  # Schema Repos table
   #   t.string "url"
   #   t.datetime "created_at", null: false
   #   t.datetime "updated_at", null: false
@@ -8,15 +8,13 @@ class Repo < ApplicationRecord
   #   t.text "compare"
   #   t.string "description"
   #   t.string "homepage"
-  # end
-  # validates :url, uniqueness: true
   validate :valid_url?
   validates :name, uniqueness: true
   belongs_to :user
   has_many :subscribes, dependent: :destroy
   serialize :compare, Hash
   
-  def fetch_from_github
+  def fetch_description_from_github
     array_datas = Github.repos.list user: "#{split(url)}"
     array_datas.body.each do |array_data|
       if array_data.clone_url == url
