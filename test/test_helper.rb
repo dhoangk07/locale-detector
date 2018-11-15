@@ -2,6 +2,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 require 'simplecov'
+require 'factory_girl'
 SimpleCov.start
 require 'minitest/reporters'
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
