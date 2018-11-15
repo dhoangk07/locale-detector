@@ -22,8 +22,9 @@ gem 'redcarpet'   , '~> 3.4'
 gem 'resque'      , '~> 2.0', require: 'resque/server'
 
 group :development, :test do
-  gem 'byebug'       , platforms: [:mri, :mingw, :x64_mingw]
-  gem 'letter_opener', '~> 1.6'
+  gem 'byebug'            , platforms: [:mri, :mingw, :x64_mingw]
+  gem 'letter_opener'     , '~> 1.6'
+  gem 'factory_girl_rails', '~> 4.9'
 end
 
 group :development do
