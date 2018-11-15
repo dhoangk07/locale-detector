@@ -32,7 +32,7 @@
     <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab"><%= render 'description', repo: @repo %></div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><%= markdown(@repo.read_file_read_me) %></div>
   </div>
-  <small><p class="text-danger float-right font-italic">Created at: <%= time_ago_in_words(@repo.created_at) %></p> </small>
+  
 </div>
 
 
