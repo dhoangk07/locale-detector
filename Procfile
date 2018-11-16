@@ -1,3 +1,3 @@
 web: bundle exec rails s
-worker: QUEUE=* RAILS_ENV=production bundle exec rake resque:work
+worker: PIDFILE=./resque.pid BACKGROUND=yes QUEUE="*" RAILS_ENV=production  rake resque:work >>  resque.log &
 
