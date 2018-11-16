@@ -27,7 +27,7 @@ gem 'slack-notifier'        , '~> 2.3', '>= 2.3.2'
 group :development, :test do
   gem 'byebug'            , platforms: [:mri, :mingw, :x64_mingw]
   gem 'letter_opener'     , '~> 1.6'
-  gem 'factory_girl_rails', '~> 4.9'
+  gem 'factory_bot'       , '~> 4.11', '>= 4.11.1'
 end
 
 group :development do
