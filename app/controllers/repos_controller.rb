@@ -15,7 +15,7 @@ class ReposController < ApplicationController
     @repo = current_user.repos.build(repo_params)
     if @repo.save
       Resque.enqueue(RunCloneCompare, @repo.id)
-      Resque.enqueue(RunFetchFromGithub, @repo.id)
+      Resque.enqueue(RunFetchDescriptionFromGithub, @repo.id)
       flash[:success] = "You've already successfully created #{@repo.name}"
       redirect_to repos_path
     else
@@ -49,7 +49,6 @@ class ReposController < ApplicationController
   end
   
   def show
-    
   end
   
   def destroy
