@@ -13,7 +13,16 @@ class User < ApplicationRecord
   #   t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   # end
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable
   has_many :repos, dependent: :destroy
   has_many :subscribes, dependent: :destroy
+  
+  def self.from_omniauth(auth)  
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
+  end
 end

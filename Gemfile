@@ -23,6 +23,8 @@ gem 'redis'                 , '~> 4.0', '>= 4.0.3'
 gem 'resque'                , '~> 2.0', require: 'resque/server'
 gem 'exception_notification', '~> 4.2', '>= 4.2.2'
 gem 'slack-notifier'        , '~> 2.3', '>= 2.3.2'
+gem 'omniauth-github'       , '~> 1.3'
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 group :development, :test do
   gem 'byebug'            , platforms: [:mri, :mingw, :x64_mingw]

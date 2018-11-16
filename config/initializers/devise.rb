@@ -287,4 +287,5 @@ Devise.setup do |config|
   # ActiveSupport.on_load(:devise_failure_app) do
   #   include Turbolinks::Controller
   # end
+   config.omniauth :github, 'CLIENT_ID', 'APP_SECRET', :scope => 'user:email'
 end
