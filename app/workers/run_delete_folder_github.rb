@@ -3,6 +3,6 @@ class RunDeleteFolderGithub
   
   def self.perform(repo_id)
     repo = Repo.find(repo_id)
-    repo.delete_folder_github
+    Repo.delete_folder_github(repo.cloned_source_path)
   end
 end
