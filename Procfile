@@ -1,3 +1,3 @@
 web: bundle exec rails s
-resque: QUEUE=* RAILS_ENV=production environment bundle exec rake resque:work
+resque: QUEUE=* RAILS_ENV=production bundle exec rake resque:work
 
