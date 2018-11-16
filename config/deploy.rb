@@ -6,7 +6,7 @@ set :repo_url, "https://github.com/dhoangk07/locale-detector.git"
 set :passenger_restart_with_touch, true
 set :deploy_to, "/home/deploy/locale-detector"
 
-set :workers, { "clone_queue" => 1, "delete_folder_queue" => 3, "fetch_description_queue" => 1 }
+set :workers, { "clone_queue" => 1, "delete_folder_queue" => 1, "fetch_description_queue" => 1 }
 set :resque_environment_task, true
 after "deploy:restart", "resque:restart"
 
