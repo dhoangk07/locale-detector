@@ -1,5 +1,5 @@
 class RunDeleteFolderGithub 
-  @queue = :delete_queue
+  @queue = :delete_folder_queue
   
   def self.perform(repo_id)
     repo = Repo.find(repo_id)
