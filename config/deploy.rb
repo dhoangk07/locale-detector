@@ -6,10 +6,10 @@ set :repo_url, "https://github.com/dhoangk07/locale-detector.git"
 set :passenger_restart_with_touch, true
 set :deploy_to, "/home/deploy/locale-detector"
 
-role :resque_worker, "worker"
-role :resque_scheduler, "worker"
+role :resque_worker, "206.189.152.101"
+role :resque_scheduler, "206.189.152.101"
 
-# set :workers, { "clone_queue" => 1, "delete_folder_queue" => 1, "fetch_description_queue" => 1 }
+set :workers, { "clone_queue" => 1, "delete_folder_queue" => 1, "fetch_description_queue" => 1 }
 set :resque_environment_task, true
 set :resque_log_file, "log/resque.log"
 
