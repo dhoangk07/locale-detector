@@ -11,7 +11,8 @@ role :resque_scheduler, "deploy"
 
 # set :workers, { "clone_queue" => 1, "delete_folder_queue" => 1, "fetch_description_queue" => 1 }
 set :resque_environment_task, true
-set :resque_rails_env, "clone_queue", "delete_folder_queue", "fetch_description_queue"
+set :resque_log_file, "log/resque.log"
+
 after "deploy:restart", "resque:restart"
 
 set :linked_files, %w{config/database.yml config/secrets.yml}
