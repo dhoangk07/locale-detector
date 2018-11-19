@@ -29,7 +29,9 @@
   </ul>
 
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab"><%= render 'table', repo: @repo %></div>
+    <% if @repo.compare != {} %>
+      <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab"><%= render 'table', repo: @repo %></div>
+    <% end %>
     <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab"><%= render 'description', repo: @repo %></div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><%= markdown(@repo.read_file_read_me) %></div>
   </div>
