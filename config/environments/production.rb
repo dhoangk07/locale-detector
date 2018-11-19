@@ -108,7 +108,7 @@ Rails.application.configure do
     :address => "smtp.mailgun.org",
     :port => 587,
     :domain => "sandboxb1f12a146c3a4e929e04d2c6bf311aaa.mailgun.org",
-    :user_name => "Dinh Hoang",
+    :user_name => Rails.application.secrets[:MYUSERNAME],
     :password => Rails.application.secrets[:MYPASSWORD]
   }
 end
