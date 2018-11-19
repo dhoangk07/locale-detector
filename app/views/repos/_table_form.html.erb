@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+    <tr class="text-center border-off text-primary">
+      <th></th>
+      <th></th>
+      <th class="text-left">Name</th>
+      <th class="text-right">Url</th>
+      <th colspan="3" >Action</th>
+    </tr>
+  </thead>
+  <tbody >
+    <% @repos.each do |repo| %>
+    <tr >
+      <td></td>
+      <td></td>
+      <td class="text-left text-capitalize"><%= link_to repo.name, repo_path(repo)%></td>
+      <td class="text-right "><a href="<%= repo.url %>" target="_blank"><%= repo.url %></a></td>
+      <td class="text-center">
+      <%= render 'action', repo: repo %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
