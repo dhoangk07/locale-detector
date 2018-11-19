@@ -23,18 +23,6 @@ class ReposController < ApplicationController
     end
   end 
 
-  def subscribe
-    @repo.subscribes.create(user_id: current_user.id)
-    flash[:success] = "You've already successfully subscribed for #{@repo.name}"
-    redirect_to repo_path(@repo)
-  end
-
-  def unsubscribe
-    @repo.subscribes.where(user_id: current_user.id).destroy_all
-    flash[:danger] = "You've already unsubscribed for #{@repo.name}"
-    redirect_to repo_path(@repo)
-  end
-
   def edit
   end
   
@@ -58,6 +46,17 @@ class ReposController < ApplicationController
     redirect_to repos_path
   end
 
+  def subscribe
+    @repo.subscribes.create(user_id: current_user.id)
+    flash[:success] = "You've already successfully subscribed for #{@repo.name}"
+    redirect_to repo_path(@repo)
+  end
+
+  def unsubscribe
+    @repo.subscribes.where(user_id: current_user.id).destroy_all
+    flash[:danger] = "You've already unsubscribed for #{@repo.name}"
+    redirect_to repo_path(@repo)
+  end
   private
   def set_repo
     @repo = Repo.find(params[:id])
