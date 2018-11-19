@@ -11,9 +11,7 @@
       file, please take a look at below for more detail
     </p>
     <p>
-    <% @user.repos.each do |repo| %>
-      <%= repo.run_compare %>
-    <% end %>
+      <%= render 'repos/table', repo: @repo %>
     </p>
     <p>Thank you</p>
   </body>
