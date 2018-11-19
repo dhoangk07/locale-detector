@@ -117,5 +117,9 @@ class Repo < ApplicationRecord
       UserMailer.notify_missing_key_on_locale_for_subscribe(user_subscribed, self).deliver_now
     end
   end
+
+  def self.count_search(search)
+    search ? self.where('name ILIKE ?', "%#{search}%").count : self.count
+  end
 end
 
