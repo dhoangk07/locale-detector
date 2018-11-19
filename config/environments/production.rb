@@ -109,6 +109,6 @@ Rails.application.configure do
     :port => 587,
     :domain => "sandboxb1f12a146c3a4e929e04d2c6bf311aaa.mailgun.org",
     :user_name => "Dinh Hoang",
-    :password => "MYPASSWORD"
+    :password => Rails.application.secrets[:MYPASSWORD]
   }
 end
