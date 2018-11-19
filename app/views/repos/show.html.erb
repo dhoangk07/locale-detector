@@ -7,6 +7,7 @@
       <% else %>
         <%= link_to 'Subscribe', subscribe_repo_path(@repo), method: :post, class: 'btn btn-success btn-sm' %>
       <% end %> 
+    <%= render 'action', repo: @repo %>
     </span>  
   </h3>
 
