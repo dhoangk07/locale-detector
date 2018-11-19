@@ -1,10 +1,7 @@
 class ReposController < ApplicationController
-  before_action :set_repo, only: %i[edit update show destroy subscribe unsubscribe]
+  before_action :set_repo, only: %i[edit update show destroy subscribe unsubscribe ]
   def index
     @repos = Repo.order(created_at: :DESC)
-    if params[:search].present?
-      @repos = @repos.search(params[:search])
-    end
   end
   
   def new
@@ -57,6 +54,11 @@ class ReposController < ApplicationController
     flash[:danger] = "You've already unsubscribed for #{@repo.name}"
     redirect_to repo_path(@repo)
   end
+
+  def search
+    @repo = Repo.search(params[:search])
+  end
+
   private
   def set_repo
     @repo = Repo.find(params[:id])

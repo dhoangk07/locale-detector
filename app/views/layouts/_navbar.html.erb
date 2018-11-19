@@ -1,13 +1,11 @@
 <div class="container">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-      <form class="navbar-form navbar-left">
+      <%= form_tag search_repos_path, class: 'navbar-form navbar-left', method: :post do %>
         <div class="form-inline my-2 my-lg-0 placeholder">
-          <%= form_tag repos_path, :class =>"form-control", :method => 'get' do %>
-            <%= text_field_tag :search, params[:search], :class =>"form-control", :placeholder=>"Search" %>
-          <% end %>
+          <%= text_field_tag :search, params[:search], :class =>"form-control", :placeholder=>"Search" %>
         </div>
-      </form>
+      <% end %>
     </div>
     <div class="float-right">
       <% if user_signed_in? %>
