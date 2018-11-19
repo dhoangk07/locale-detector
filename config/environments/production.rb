@@ -102,12 +102,6 @@ Rails.application.configure do
     }
   }
 
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
-    domain:  'sandboxb1f12a146c3a4e929e04d2c6bf311aaa.mailgun.org'
-    api_key: 'e4b7236321cb2d0f3fbff2fed606d036-1053eade-865f2d25'
-  }
-
   # config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = {
   #   :authentication => :plain,
