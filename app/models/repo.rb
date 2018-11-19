@@ -26,7 +26,7 @@ class Repo < ApplicationRecord
   end
 
   def split(url)
-   %r{/([^/]+)/([^/]+)/?\z}o.match(url)[1]
+    %r{/([^/]+)/([^/]+)/?\z}o.match(url)[1]
   end
 
   def star_github_small
@@ -44,7 +44,7 @@ class Repo < ApplicationRecord
   def locale_path
     "#{cloned_source_path}/config/locales"
   end
-
+  
   def match_locale(file)
     supported_locales = ["af", "ar", "az", "be", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de", "de_AT", "de_CH", "de_DE", "el", "el_CY", "en", "en_AU", "en_CA", "en_GB", "en_IE", "en_IN", "en_NZ", "en_US", "en_ZA", "en_CY", "eo", "es", "es_419", "es_AR", "es_CL", "es_CO", "es_CR", "es_EC", "es_ES", "es_MX", "es_NI", "es_PA", "es_PE", "es_US", "es_VE", "et", "eu", "fa", "fi", "fr", "fr_CA", "fr_CH", "fr_FR", "gl", "he", "hi", "hi_IN", "hr", "hu", "id", "is", "it", "it_CH", "ja", "ka", "km", "kn", "ko", "lb", "lo", "lt", "lv", "mk", "ml", "mn", "mr_IN", "ms", "nb", "ne", "nl", "nn", "oc", "or", "pa", "pl", "pt", "pt_BR", "rm", "ro", "ru", "sk", "sl", "sq", "sr", "sw", "ta", "te", "th", "tl", "tr", "tt", "ug", "ur", "uz", "vi", "wo", "zh_CN", "zh_HK", "zh_TW", "zh_YUE"]
     return true if supported_locales.include?(file)
@@ -74,20 +74,17 @@ class Repo < ApplicationRecord
 
   def self.routine_task
     Repo.all.each do |repo|
-      # if Dir.exists?(repo.cloned_source_path)
-      #   # TODO: fetch
-      # else
-        # repo.run_clone
-        UserMailer.notify_missing_key_on_locale_for_owner(repo.user).deliver_now
-        user_subscribed_id = self.subscribes.last.user_id
-        user_subscribed = User.find(user_subscribed_id)
-        UserMailer.notify_missing_key_on_locale_for_subscribe(user_subscribed).deliver_now
-      # end
+      if Dir.exists?(repo.locale_path) == false
+        # TODO: fetch
+        puts repo.name
+      else
+        repo.run_compare
+        repo.send_email_if_missing_keys
+      end
       # do next
       # 1. run compare
       # 2. if have missing keys, send email to owner & subscribers
       # 3. There is a link to Repo/show in the email.
-      # 
       # 4. Repo/show: display missing keys
     end
   end
@@ -111,6 +108,7 @@ class Repo < ApplicationRecord
   def self.search(search)
     search ? self.where('name ILIKE ?', "%#{search}%") : self
   end
+
   def send_email_if_missing_keys
     if self.compare != {} 
       UserMailer.notify_missing_key_on_locale_for_owner(self.user, self).deliver_now
