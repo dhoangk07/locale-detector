@@ -111,5 +111,13 @@ class Repo < ApplicationRecord
   def self.search(search)
     search ? self.where('name ILIKE ?', "%#{search}%") : self
   end
+  def send_email_if_missing_keys
+    if self.compare != {} 
+      UserMailer.notify_missing_key_on_locale_for_owner(self.user, self).deliver_now
+      user_subscribed_id = self.subscribes.last.user_id if self.subscribes.present?
+      user_subscribed = User.find(user_subscribed_id)
+      UserMailer.notify_missing_key_on_locale_for_subscribe(user_subscribed, self).deliver_now
+    end
+  end
 end
 
