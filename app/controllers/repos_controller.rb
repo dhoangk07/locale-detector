@@ -1,5 +1,5 @@
 class ReposController < ApplicationController
-  before_action :set_repo, only: %i[edit update show destroy subscribe unsubscribe ]
+  before_action :find_repo, only: %i[edit update show destroy subscribe unsubscribe ]
   def index
     @repos = Repo.order(created_at: :DESC)
   end
@@ -60,8 +60,10 @@ class ReposController < ApplicationController
   end
 
   private
-  def set_repo
-    @repo = Repo.find(params[:id])
+  def find_repo
+    if params[:id] != 'search'
+      @repo = Repo.find(params[:id])
+    end
   end
   
   def repo_params
