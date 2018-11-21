@@ -130,7 +130,7 @@ class Repo < ApplicationRecord
   end
 
   def self.count_search(search)
-    search ? self.where('name ILIKE ?', "%#{search}%").count : self.count
+    self.search(search).count
   end
 
   
