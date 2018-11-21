@@ -68,6 +68,17 @@ class Repo < ApplicationRecord
     Rugged::Repository.clone_at(self.url, cloned_source_path)
   end
 
+  ## fetch
+  ## 1. rug.remotes['origin'].fetch
+  ## 2. rug.checkout(rug.branches["origin/master"], strategy: :force)
+  def pull_code
+    # TODO: need to handle exception or conflicts
+    # TODO: need to check the repo has legacy code
+    rugged = Rugged::Repository.new(cloned_source_path)
+    rugged.remotes['origin'].fetch
+    rugged.checkout(rug.branches["origin/master"], strategy: :force)
+  end
+
   def cloned_source_path
     "tmp/#{name}"
   end
@@ -121,5 +132,7 @@ class Repo < ApplicationRecord
   def self.count_search(search)
     search ? self.where('name ILIKE ?', "%#{search}%").count : self.count
   end
+
+  
 end
 
