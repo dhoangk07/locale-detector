@@ -13,7 +13,7 @@ class ReposController < ApplicationController
     if @repo.save
       Resque.enqueue(RunCloneCompare, @repo.id)
       Resque.enqueue(RunFetchDescriptionFromGithub, @repo.id)
-      flash[:success] = "You've already successfully created #{@repo.name}"
+      flash[:success] = "#{@repo.name} created successfully"
       redirect_to repos_path
     else
       render :new
@@ -26,7 +26,7 @@ class ReposController < ApplicationController
   def update
     @repo.update_attributes(repo_params)
     if @repo.save
-      flash[:success] = "You've already successfully updated for #{@repo.name}"
+      flash[:success] = "#{@repo.name} updated successfully"
       redirect_to repos_path
     else
       render :edit
@@ -39,19 +39,19 @@ class ReposController < ApplicationController
   def destroy
     @repo.destroy
     Resque.enqueue(RunDeleteFolderGithub, @repo.id)
-    flash[:danger] = "You've already successfully deleted #{@repo.name}"
+    flash[:danger] = "#{@repo.name} deleted successfully"
     redirect_to repos_path
   end
 
   def subscribe
     @repo.subscribes.create(user_id: current_user.id)
-    flash[:success] = "You've already successfully subscribed for #{@repo.name}"
+    flash[:success] = "#{@repo.name} subscribed successfully"
     redirect_to repo_path(@repo)
   end
 
   def unsubscribe
     @repo.subscribes.where(user_id: current_user.id).destroy_all
-    flash[:danger] = "You've already unsubscribed for #{@repo.name}"
+    flash[:danger] = "#{@repo.name} unsubscribed successfully"
     redirect_to repo_path(@repo)
   end
 
