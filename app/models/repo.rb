@@ -76,7 +76,7 @@ class Repo < ApplicationRecord
     # TODO: need to check the repo has legacy code
     rugged = Rugged::Repository.new(cloned_source_path)
     rugged.remotes['origin'].fetch
-    rugged.checkout(rug.branches["origin/master"], strategy: :force)
+    rugged.checkout(rugged.branches["origin/master"], strategy: :force)
   end
 
   def cloned_source_path
@@ -127,7 +127,5 @@ class Repo < ApplicationRecord
   def self.count_search(search)
     self.search(search).count
   end
-
-  
 end
 
