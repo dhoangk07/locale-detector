@@ -86,11 +86,12 @@ class Repo < ApplicationRecord
   def self.detect_missing_keys
     Repo.all.each do |repo|
       if Dir.exists?(repo.locale_path) == false
-        puts repo.name
+        repo.run_clone
       else
-        repo.run_compare
-        repo.send_email_if_missing_keys
+        repo.pull_code
       end
+      repo.run_compare
+      repo.send_email_if_missing_keys
     end
   end
 
