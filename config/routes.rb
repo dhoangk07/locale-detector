@@ -1,7 +1,7 @@
 require 'resque/server'
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   resources :repos do
     post :subscribe, on: :member
     delete :unsubscribe, on: :member
