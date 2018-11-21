@@ -86,17 +86,11 @@ class Repo < ApplicationRecord
   def self.routine_task
     Repo.all.each do |repo|
       if Dir.exists?(repo.locale_path) == false
-        # TODO: fetch
         puts repo.name
       else
         repo.run_compare
         repo.send_email_if_missing_keys
       end
-      # do next
-      # 1. run compare
-      # 2. if have missing keys, send email to owner & subscribers
-      # 3. There is a link to Repo/show in the email.
-      # 4. Repo/show: display missing keys
     end
   end
 
