@@ -45,13 +45,13 @@ class ReposController < ApplicationController
 
   def subscribe
     @repo.subscribes.create(user_id: current_user.id)
-    flash[:success] = "#{@repo.name} subscribed successfully"
+    flash[:success] = "subscribed #{@repo.name} repo successfully"
     redirect_to repo_path(@repo)
   end
 
   def unsubscribe
     @repo.subscribes.where(user_id: current_user.id).destroy_all
-    flash[:danger] = "#{@repo.name} unsubscribed successfully"
+    flash[:danger] = "unsubscribed #{@repo.name} repo successfully"
     redirect_to repo_path(@repo)
   end
 
