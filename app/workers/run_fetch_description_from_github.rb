@@ -3,7 +3,7 @@ class RunFetchDescriptionFromGithub
 
   def self.perform(repo_id)
     repo = Repo.find(repo_id)
-    repo.decorate_repo
+    repo.conver_to_git_path
     repo.fetch_description_from_github
   end
 end

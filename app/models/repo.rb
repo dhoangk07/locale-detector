@@ -109,7 +109,7 @@ class Repo < ApplicationRecord
     errors.add(:url, "Please input correct Url") unless self.url =~ url_regexp 
   end
 
-  def decorate_repo
+  def conver_to_git_path
     self.url[-1] == '/' ? self.url.chomp!('/') : self.url
     url = self.url + ".git" 
     name = self.name.gsub(/[-]/, ' ').gsub(/[_]/, ' ').humanize
