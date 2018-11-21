@@ -83,7 +83,7 @@ class Repo < ApplicationRecord
     "tmp/#{name}"
   end
 
-  def self.routine_task
+  def self.detect_missing_keys
     Repo.all.each do |repo|
       if Dir.exists?(repo.locale_path) == false
         puts repo.name
