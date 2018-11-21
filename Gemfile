@@ -25,6 +25,7 @@ gem 'exception_notification', '~> 4.2', '>= 4.2.2'
 gem 'slack-notifier'        , '~> 2.3', '>= 2.3.2'
 gem 'mailgun-ruby'          , '~> 1.1', '>= 1.1.11'
 gem 'omniauth-github'       , '~> 1.3'
+gem 'font-awesome-rails'    , '~> 4.7', '>= 4.7.0.4'
 
 group :development, :test do
   gem 'byebug'            , platforms: [:mri, :mingw, :x64_mingw]
