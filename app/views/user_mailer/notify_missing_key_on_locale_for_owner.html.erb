@@ -6,9 +6,8 @@
   <body>
     <h1>Hello <%= @user.email %></h1>
     <p>
-      We would like to inform that file locale on your repos
-       <%= @user.repos %> had missed key from locale 
-      file, please take a look at below for more detail
+      We would like to inform that file locales on your repo
+       <%= @repo.name %> had missed keys from 'en.yml', please take a look at below for more detail
     </p>
     <p>
       <%= render 'repos/table', repo: @repo %>
