@@ -1,23 +1,23 @@
-<div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+<div class="container-fluid px-0">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="collapse navbar-collapse col-6 offset-2" id="navbarTogglerDemo03">
       <%= form_tag search_repos_path, class: 'navbar-form navbar-left', method: :post do %>
-        <div class="form-inline my-2 my-lg-0 placeholder">
-          <%= text_field_tag :search, params[:search], :class =>"form-control", :placeholder=>"Search" %>
-        </div>
+      <div class="form-inline my-2 my-lg-0 placeholder">
+        <%= text_field_tag :search, params[:search], :class =>"form-control", :placeholder=>"Search" %>
+      </div>
       <% end %>
     </div>
-    <div class="float-right">
+    <div class="float-right col-6">
       <% if user_signed_in? %>
-        <div class="btn-group">
-          <a href="#"><%= link_to 'New Repo', new_repo_path, class: "dropdown-item text-primary" %></a> 
-          <a href="#"><%=link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'dropdown-item text-danger'%></a>
-        </div>
+      <div class="btn-group">
+        <a href="#"><%= link_to 'New Repo', new_repo_path, class: "dropdown-item text-primary" %></a> 
+        <a href="#"><%=link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'dropdown-item text-danger'%></a>
+      </div>
       <% else %>
-        <div class="btn-group">
-          <a  href="#"><%= link_to "Sign In", new_user_session_path, class: "dropdown-item text-success" %></a>
-          <a href="#"><%=link_to 'Sign Up', new_user_registration_path, class: 'dropdown-item text-primary'%></a>
-        </div>
+      <div class="btn-group">
+        <a  href="#"><%= link_to "Sign In", new_user_session_path, class: "dropdown-item text-success" %></a>
+        <a href="#"><%=link_to 'Sign Up', new_user_registration_path, class: 'dropdown-item text-primary'%></a>
+      </div>
       <% end %>
     </div>
   </nav>
