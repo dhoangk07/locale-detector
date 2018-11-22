@@ -9,7 +9,7 @@ class Repo < ApplicationRecord
   #   t.string "description"
   #   t.string "homepage"
   validate :valid_url?
-  validates :name, uniqueness: true
+  validates :name, :url, uniqueness: true, presence: true
   belongs_to :user
   has_many :subscribes, dependent: :destroy
   serialize :compare, Hash
