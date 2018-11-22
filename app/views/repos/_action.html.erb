@@ -1,8 +1,3 @@
-<% if action_name == "index" %>
-  <%= link_to repo_path(repo) do %>
-    <button class="btn btn-info btn-sm" title="Show"><i class="fa fa-eye"></i></button>
-  <% end %>
-<% end %>
 <% if repo.user == current_user %>
   <%= link_to edit_repo_path(repo) do %>
     <button class="btn badge-info btn-sm" title="Edit" ><i class="fa fa-edit"></i></button>
