@@ -61,9 +61,7 @@ class ReposController < ApplicationController
 
   private
   def find_repo
-    if params[:id] != 'search'
       @repo = Repo.find(params[:id])
-    end
   end
   
   def repo_params

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :repos do
     post :subscribe, on: :member
     delete :unsubscribe, on: :member
-    post :search, on: :collection
+    get :search, on: :collection
   end
 
   root to: "repos#index"
