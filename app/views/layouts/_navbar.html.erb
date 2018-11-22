@@ -16,7 +16,7 @@
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-right">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <a href="#"><%= link_to 'New Repo', new_repo_path, class: "nav-link text-warning" %></a> 
+            <a href="#"><%= link_to 'New Repo', new_repo_path, class: "nav-link text-primary" %></a> 
           </li>
 
           <li class="nav-item ">
@@ -24,7 +24,7 @@
           </li>
         <% else %>
           <li class="nav-item">
-            <a  href="#"><%= link_to "Sign In", new_user_session_path, class: "nav-link text-success"%></a>
+            <a  href="#"><%= link_to "Sign In", new_user_session_path, class: "nav-link text-primary"%></a>
           </li>
 
           <li class="nav-item">
