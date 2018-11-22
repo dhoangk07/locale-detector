@@ -1,0 +1,19 @@
+<ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Compare Locale</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Read Me</a>
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+  <% if @repo.compare != {} %>
+    <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab"><%= render 'table', repo: @repo %></div>
+  <% end %>
+  <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab"><%= render 'description', repo: @repo %></div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><%= markdown(@repo.read_file_read_me) %></div>
+</div>

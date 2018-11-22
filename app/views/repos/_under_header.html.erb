@@ -1,0 +1,13 @@
+<span>
+  <% if subscribed_by_user?(current_user, @repo) %> 
+    <%= link_to 'Unsubsbribe', unsubscribe_repo_path(@repo), method: :delete, class: 'btn btn-danger btn-sm' %>
+  <% else %>
+    <%= link_to 'Subscribe', subscribe_repo_path(@repo), method: :post, class: 'btn btn-success btn-sm' %>
+  <% end %> 
+<%= render 'action', repo: @repo %>
+</span>  
+
+<span class="btn-github float-right">
+  <iframe class="gem__ghbtn pt-2" src=<%=@repo.star_github_small%> frameborder="0" scrolling="0" width="100px" height="30px"></iframe>
+  <iframe class="gem__ghbtn pt-2" src=<%=@repo.fork_github_small%> frameborder="0" scrolling="0" width="100px" height="30px"></iframe>
+</span>
