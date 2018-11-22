@@ -5,8 +5,8 @@
       <th class="text-primary">Locale</th>
       <th></th>
       <th></th>
-      <th class="text-left text-primary">Missing Keys</th>
-      <th class="text-danger font-italic">Total: <%= @repo.compare.keys.count > 0 ?  "#{@repo.compare.keys.count} locales missing key" : "#{@repo.compare.keys.count} locale missing key"%></th>
+      <th class="text-left text-primary">Missing Keys
+      <span class="text-right text-danger offset-3">Total: <%= @repo.compare.keys.count > 0 ?  "#{@repo.compare.keys.count} locales missing key" : "#{@repo.compare.keys.count} locale missing key"%></span> </th>
     </tr>
   </thead>
   <tbody>
