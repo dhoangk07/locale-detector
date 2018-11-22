@@ -5,16 +5,20 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <div class="col-6 offset-1">
-       <%= form_tag search_repos_path, class: 'navbar-form navbar-left', method: :get do %>
+      <%= form_tag search_repos_path, class: 'navbar-form navbar-left', method: :get do %>
         <div class="form-inline my-2 my-lg-0 placeholder">
           <%= text_field_tag :search, params[:search], :class =>"form-control", :placeholder=>"Search" %>
         </div>
-        <% end %>
+      <% end %>
     </div>
    
     <div class="col-4">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-right">
         <% if user_signed_in? %>
+          <li class="nav-item ">
+            <a href="#"><%=link_to 'Locale Detector', repos_path, class: 'nav-link text-primary'%></a>
+          </li>
+          
           <li class="nav-item active">
             <a href="#"><%= link_to 'New Repo', new_repo_path, class: "nav-link text-primary" %></a> 
           </li>
