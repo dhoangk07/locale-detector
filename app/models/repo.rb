@@ -20,7 +20,7 @@ class Repo < ApplicationRecord
       if array_data.clone_url == url
         description = array_data.description
         homepage = array_data.homepage
-        self.update(description: description, homepage: homepage)
+        update(description: description, homepage: homepage)
       end
     end
   end
@@ -61,11 +61,11 @@ class Repo < ApplicationRecord
       end
     end
     result = hash.select{|k,v| v.present?}
-    self.update(compare: result)
+    update(compare: result)
   end
 
   def run_clone
-    Rugged::Repository.clone_at(self.url, cloned_source_path)
+    Rugged::Repository.clone_at(url, cloned_source_path)
   end
 
   ## fetch
@@ -101,14 +101,14 @@ class Repo < ApplicationRecord
 
   def valid_url?
     url_regexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
-    errors.add(:url, "Please input correct Url") unless self.url =~ url_regexp 
+    errors.add(:url, "Please input correct Url") unless url =~ url_regexp 
   end
 
   def convert_to_git_path
-    self.url[-1] == '/' ? self.url.chomp!('/') : self.url
-    url = self.url + ".git" 
+    url[-1] == '/' ? url.chomp!('/') : url
+    url = url + ".git" 
     name = self.name.gsub(/[-]/, ' ').gsub(/[_]/, ' ').humanize
-    self.update(url: url, name: name)
+    update(url: url, name: name)
   end
   
   def self.search(search)
@@ -116,8 +116,8 @@ class Repo < ApplicationRecord
   end
 
   def send_email_if_missing_keys
-    if self.compare != {} 
-      UserMailer.notify_missing_key_on_locale_for_owner(self.user, self).deliver_now
+    if compare != {} 
+      UserMailer.notify_missing_key_on_locale_for_owner(user, self).deliver_now
       if self.subscribes.present?
         subscribes.each do |subscribe|
           user_subscribed = User.find(subscribe.user_id)
