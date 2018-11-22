@@ -15,7 +15,7 @@ gem 'devise'                , '~> 4.5'
 gem 'simple_form'           , '~> 4.0', '>= 4.0.1'
 gem 'bootstrap'             , '~> 4.1', '>= 4.1.3'
 gem 'jquery-rails'          , '~> 4.3', '>= 4.3.3'
-gem 'whenever'              , :require => false
+gem 'whenever'              , '~> 0.10.0', :require => false
 gem 'rugged'                , '~> 0.27.5'
 gem 'github_api'            , '~> 0.18.2'
 gem 'redcarpet'             , '~> 3.4'
