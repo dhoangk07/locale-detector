@@ -1,0 +1,7 @@
+run_detect_daily:
+  cron: 0 0 * * *
+  class: RunDetectDaily
+  queue: queue_detect_daily
+  args:
+  description: Runs the perform method in MyJob
+

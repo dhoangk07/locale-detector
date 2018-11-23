@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   end
 
   root to: "repos#index"
-  mount Resque::Server, at: '/resque'  
+  authenticate :user do
+    mount Resque::Server, at: '/resque'  
+  end
 end
