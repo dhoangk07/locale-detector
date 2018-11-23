@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-   default from: 'notifications@example.com'
+   default from: 'notifications@locale-detector.space'
  
   def notify_missing_key_on_locale_for_owner(user, repo)
     @user = user
