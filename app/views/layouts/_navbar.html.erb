@@ -14,11 +14,10 @@
    
     <div class="col-4">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-right">
-        <% if user_signed_in? %>
-          <li class="nav-item ">
+        <li class="nav-item ">
             <a href="#"><%=link_to 'Locale Detector', repos_path, class: 'nav-link text-primary'%></a>
           </li>
-          
+        <% if user_signed_in? %>
           <li class="nav-item active">
             <a href="#"><%= link_to 'New Repo', new_repo_path, class: "nav-link text-primary" %></a> 
           </li>
