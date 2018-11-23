@@ -42,4 +42,5 @@ Rails.application.configure do
     :user_name => Rails.application.secrets[:MYUSERNAME],
     :password => Rails.application.secrets[:MYPASSWORD]
   }
+  config.action_mailer.default_url_options = { :host => Rails.application.secrets[:DOMAIN] }
 end
