@@ -44,6 +44,7 @@ class Repo < ApplicationRecord
   def locale_path
     "#{cloned_source_path}/config/locales"
   end
+
   def locale_path_exist?
     Dir.exist?(locale_path)
   end
@@ -71,12 +72,7 @@ class Repo < ApplicationRecord
     Rugged::Repository.clone_at(url, cloned_source_path)
   end
 
-  ## fetch
-  ## 1. rug.remotes['origin'].fetch
-  ## 2. rug.checkout(rug.branches["origin/master"], strategy: :force)
   def pull_code
-    # TODO: need to handle exception or conflicts
-    # TODO: need to check the repo has legacy code
     rugged = Rugged::Repository.new(cloned_source_path)
     rugged.remotes['origin'].fetch
     rugged.checkout(rugged.branches["origin/master"], strategy: :force)
