@@ -86,7 +86,7 @@ class Repo < ApplicationRecord
     "tmp/#{name}"
   end
 
-  def self.detect_missing_keys
+  def self.detect_missing_keys_daily
     Repo.all.each do |repo|
       if Dir.exists?(repo.locale_path) == false
         repo.run_clone
