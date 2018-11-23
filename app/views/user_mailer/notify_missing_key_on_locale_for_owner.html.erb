@@ -4,10 +4,9 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>Hello <%= @user.email %></h1>
+    <p>Hello there</p>
     <p>
-      We would like to inform that file locales on your repo
-       <%= @repo.name.capitalize %> had missed keys from 'en.yml', please take a look at <%= link_to "Show", repo_url(@repo)%> for more detail
+      The <%= @repo.name.capitalize %> had the keys which are not translated to correspond with locale 'en.yml', please take a look at <%= link_to "Show", repo_url(@repo)%> for more detail.
     </p>
     <p>Thank you</p>
   </body>
