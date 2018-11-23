@@ -1,5 +1,6 @@
 class ReposController < ApplicationController
   before_action :find_repo, only: %i[edit update show destroy subscribe unsubscribe ]
+  skip_before_action :authenticate_user!, only: %i[show index]
   def index
     @repos = Repo.order(created_at: :DESC)
   end
