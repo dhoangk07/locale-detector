@@ -1,7 +1,7 @@
 run_detect_daily:
-  cron: 0 0 * * *
+  cron: "0 0 * * *"
   class: RunDetectDaily
-  queue: queue_detect_daily
+  queue: high
   args:
-  description: Runs the perform method in MyJob
+  description: Run locale detect for all repos
 
