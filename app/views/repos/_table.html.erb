@@ -13,7 +13,7 @@
     <% @repo.compare.each do |locale, missing_keys|  %>
       <tr>
         <td class="text-center"></td>
-        <td class="text-center"><%= locale %></td>
+        <td class="text-center"><%= locale %><p class="text-danger font-italic float-right">(<%= missing_keys.count %>)</p></td>
         <td></td>
         <td></td>
         <td>
@@ -22,8 +22,7 @@
           <% end %>
         </td>
         <td></td>
-        <td><small class="text-danger font-italic float-right">Q'ty: <%= missing_keys.count %></small></td>
-      </tr>
+        <td></td>
     <% end %>
   </tbody>
 </table>
