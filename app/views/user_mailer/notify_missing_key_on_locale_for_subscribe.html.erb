@@ -7,10 +7,7 @@
     <h1>Hello <%= @user.email %></h1>
     <p>
       We would like to inform that file locales on your repo
-       <%= @repo.name %> had missed keys from 'en.yml', please take a look at below for more detail
-    </p>
-    <p>
-      <%= render 'repos/table', repo: @repo %>
+       <%= @repo.name.capitalize %> had missed keys from 'en.yml', please take a look at <%= link_to "Show", repo_url(@repo) %> for more detail
     </p>
     <p>Thank you</p>
   </body>
