@@ -65,11 +65,11 @@ class Repo < ApplicationRecord
       end
     end
     result = hash.select{|k,v| v.present?}
-    update(compare: result)
+    self.update(compare: result)
   end
 
   def run_clone
-    Rugged::Repository.clone_at(url, cloned_source_path)
+    Rugged::Repository.clone_at(self.url, cloned_source_path)
   end
 
   def pull_code
