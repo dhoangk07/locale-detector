@@ -37,8 +37,9 @@ class ReposController < ApplicationController
   end
   
   def destroy
+    path = @repo.cloned_source_path
     @repo.destroy
-    Resque.enqueue(RunDeleteFolderGithub, @repo.id)
+    Resque.enqueue(RunDeleteFolderGithub, path)
     flash[:danger] = "#{@repo.name.capitalize} deleted successfully"
     redirect_to repos_path
   end

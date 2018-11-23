@@ -96,8 +96,8 @@ class Repo < ApplicationRecord
     end
   end
 
-  def self.delete_folder_github(cloned_source_path)
-    FileUtils.rm_rf(cloned_source_path)
+  def self.delete_folder_github(path)
+    FileUtils.rm_rf(path)
   end
 
   def valid_url?

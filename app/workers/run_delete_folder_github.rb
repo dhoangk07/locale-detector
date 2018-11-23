@@ -1,8 +1,7 @@
 class RunDeleteFolderGithub 
   @queue = :delete_folder_queue
   
-  def self.perform(repo_id)
-    repo = Repo.find(repo_id)
-    Repo.delete_folder_github(repo.cloned_source_path)
+  def self.perform(path)
+    Repo.delete_folder_github(path)
   end
 end
