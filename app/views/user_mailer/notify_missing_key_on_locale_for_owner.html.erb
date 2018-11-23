@@ -7,7 +7,7 @@
     <h1>Hello <%= @user.email %></h1>
     <p>
       We would like to inform that file locales on your repo
-       <%= @repo.name.capitalize %> had missed keys from 'en.yml', please take a look at <%= link_to "Show", Rails.configuration.action_mailer.default_url_options[:host]+ "/repo/#{@repo.id}" %> for more detail
+       <%= @repo.name.capitalize %> had missed keys from 'en.yml', please take a look at <%= link_to "Show", repo_url(@repo)%> for more detail
     </p>
     <p>Thank you</p>
   </body>
