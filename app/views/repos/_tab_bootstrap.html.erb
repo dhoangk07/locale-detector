@@ -11,9 +11,9 @@
 </ul>
 
 <div class="tab-content" id="myTabContent">
-  <% if @repo.locale_path_exist? %>
+  <% if @repo.compare != {}%>
     <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab"><%= render 'table', repo: @repo %></div>
-  <% else %>
+  <% elsif @repo.locale_path_exist? == false %>
     <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab"><h4 class="text-primary pt-3">We would like to inform that we only support for repo with locale file follow Rails structure</h4></div>
   <% end %>
   <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab"><%= render 'description', repo: @repo %></div>
