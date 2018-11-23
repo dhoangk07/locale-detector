@@ -1,6 +1,15 @@
 /*
 *= require_self
+*= require nprogress
+*= require nprogress-bootstrap
+*= require nprogress-turbolinks5
 */
+$nprogress-color: #f1f1f1;
+$nprogress-height: 10px;
+$nprogress-zindex: 10100;
+
+@import 'nprogress';
+@import 'nprogress-bootstrap';
 @import "bootstrap";
 @import "font-awesome";
 @import "normalize";
