@@ -93,8 +93,10 @@ class Repo < ApplicationRecord
       else
         repo.pull_code
       end
+      previous_compare = repo.compare
       repo.run_compare
-      repo.send_email_if_missing_keys
+      daily_compare = repo.compare
+      repo.send_email_if_missing_keys if previous_compare === daily_compare
     end
   end
 
