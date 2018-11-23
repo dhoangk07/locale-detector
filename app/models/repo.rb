@@ -102,12 +102,12 @@ class Repo < ApplicationRecord
 
   def valid_url?
     url_regexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
-    errors.add(:url, "Please input correct Url") unless url =~ url_regexp 
+    errors.add(:url, "Please input correct Url") unless self.url =~ url_regexp 
   end
 
   def convert_to_git_path
-    url[-1] == '/' ? url.chomp!('/') : url
-    url = url + ".git" 
+    self.url[-1] == '/' ? self.url.chomp!('/') : self.url
+    url = self.url + ".git" 
     name = self.name.gsub(/[-]/, ' ').gsub(/[_]/, ' ').humanize
     update(url: url, name: name)
   end
@@ -118,7 +118,7 @@ class Repo < ApplicationRecord
 
   def send_email_if_missing_keys
     if compare != {} 
-      UserMailer.notify_missing_key_on_locale_for_owner(user, self).deliver_now
+      UserMailer.notify_missing_key_on_locale_for_owner(self.user, self).deliver_now
       if self.subscribes.present?
         subscribes.each do |subscribe|
           user_subscribed = User.find(subscribe.user_id)
