@@ -14,11 +14,11 @@ class Repo < ApplicationRecord
     state :cloned
     state :compared
 
-    event :cloned do 
+    event :clone do 
       transitions from: [:created], to: :cloned
     end  
 
-    event :compared do
+    event :compare do
       transitions from: [:cloned], to: :compared
     end
 
