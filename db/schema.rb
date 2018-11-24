@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_16_090708) do
+ActiveRecord::Schema.define(version: 2018_11_24_030305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_11_16_090708) do
     t.text "compare"
     t.string "description"
     t.string "homepage"
+    t.string "aasm_state"
   end
 
   create_table "subscribes", force: :cascade do |t|

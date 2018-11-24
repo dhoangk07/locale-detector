@@ -8,6 +8,21 @@ class Repo < ApplicationRecord
   #   t.text "compare"
   #   t.string "description"
   #   t.string "homepage"
+  include AASM
+  aasm do
+    state :created, initial: true
+    state :cloned
+    state :compared
+
+    event :cloned do 
+      transitions from: [:created], to: :cloned
+    end  
+
+    event :compared do
+      transitions from: [:cloned], to: :compared
+    end
+
+  end
   validate :valid_url?
   validates :name, :url, uniqueness: true, presence: true
   belongs_to :user
