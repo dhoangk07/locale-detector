@@ -21,7 +21,6 @@ class Repo < ApplicationRecord
     event :compared do
       transitions from: [:cloned], to: :compared
     end
-
   end
   validate :valid_url?
   validates :name, :url, uniqueness: true, presence: true
@@ -70,22 +69,40 @@ class Repo < ApplicationRecord
     return true if supported_locales.include?(file)
   end
 
-  def run_compare
+  # def run_compare
+  #   hash = {}
+  #   Dir.foreach(locale_path) do |file|
+  #     # it does not work if it has another gem which supported locales
+  #     basename = File.basename(file, '.yml')
+  #     if match_locale(basename)
+  #       temp = CompareFile.compare('en.yml', file, self) 
+  #       hash[file] = temp 
+  #     end
+  #   end
+  #   result = hash.select{|k,v| v.present?}
+  #   self.update(compare: result)
+  #   self.compared!
+  # end
+
+  def new_run_compare_yml_file
     hash = {}
     Dir.foreach(locale_path) do |file|
-      # it does not work if it has another gem which supported locales
       basename = File.basename(file, '.yml')
       if match_locale(basename)
-        temp = CompareFile.compare('en.yml', file, self) 
-        hash[file] = temp 
+        locale_file = FlattenKey.read_file_yml("#{locale_path}/#{file}")
+        locale_file.values.first.each do |locale, missing_keys| 
+          LocaleKey.create(locale:  "#{file}", 
+                           key:     locale, 
+                           value:   missing_keys, 
+                           repo_id: self.id)
+        end
       end
     end
-    result = hash.select{|k,v| v.present?}
-    self.update(compare: result)
   end
 
   def run_clone
     Rugged::Repository.clone_at(self.url, cloned_source_path)
+    cloned!
   end
 
   def pull_code
