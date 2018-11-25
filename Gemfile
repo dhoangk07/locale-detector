@@ -28,7 +28,7 @@ gem 'omniauth-github'       , '~> 1.3'
 gem 'font-awesome-rails'    , '~> 4.7', '>= 4.7.0.4'
 gem 'nprogress-rails'       , '~> 0.2.0.2'
 gem 'aasm'                  , '~> 5.0', '>= 5.0.1'
-
+gem 'gravtastic'
 group :development, :test do
   gem 'byebug'            , platforms: [:mri, :mingw, :x64_mingw]
   gem 'letter_opener'     , '~> 1.6'

@@ -28,4 +28,7 @@ class User < ApplicationRecord
     
     user
   end
+
+  include Gravtastic
+  gravtastic
 end
