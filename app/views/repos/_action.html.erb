@@ -8,6 +8,6 @@
     <% end %>
   <% end %>
 <% end %>
-<button class="btn badge-primary btn-sm "><%= image_tag repo.user.gravatar_url(size: 20) %></button> 
+<button class="btn badge-primary btn-sm" title="<%=repo.user.email %>"><%= image_tag repo.user.gravatar_url(size: 20) %></button> 
 <button class="btn badge-primary btn-sm " title="link"><a href="<%= repo.url %>" target="_blank" class='link_white'><i class="fa fa-link"></i></a></button>
 <button class="btn badge-primary btn-sm " title="Quantity Subscribes"><%=repo.subscribes.count %></button> <br>
