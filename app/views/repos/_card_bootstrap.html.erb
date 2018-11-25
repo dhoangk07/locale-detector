@@ -5,7 +5,7 @@
         <div class="card border-primary" style="max-height: 150px;">
             <div class="card-body">
               <h5 class="card-title text-capitalize text-primary"><%= link_to repo.name, repo_path(repo) %></h5>
-              <p class="card-text text-primary"><%=repo.description.truncate(40, separator: ' ') %></p>
+              <p class="card-text text-primary"><%=repo.description.truncate(40, separator: ' ') if repo.description.present?  %></p>
               <span><%=render 'action', repo: repo %></span>
               <small class="text-muted">Create_at: <%= time_ago_in_words(repo.created_at)%></small>
             </div>
