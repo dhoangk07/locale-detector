@@ -13,6 +13,7 @@ class Repo < ApplicationRecord
     state :created, initial: true
     state :cloned
     state :compared
+    state :finished
 
     event :do_cloning do 
       transitions from: [:created], to: :cloned
@@ -20,6 +21,10 @@ class Repo < ApplicationRecord
 
     event :do_comparing do
       transitions from: [:cloned], to: :compared
+    end
+
+    event :do_finishing do
+      transitions from: [:compared], to: :finished
     end
   end
   validate :valid_url?
