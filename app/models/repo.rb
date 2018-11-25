@@ -85,6 +85,7 @@ class Repo < ApplicationRecord
   end
 
   def run_compare
+    run_compare_yml_file
     en_keys = LocaleKey.where(repo_id: self.id, locale: 'en').distinct.pluck(:key)
     locale_lists = locale_keys.select('locale').where.not(locale: 'en').distinct 
     hash = {}
