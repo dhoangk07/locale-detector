@@ -30,7 +30,7 @@ class Repo < ApplicationRecord
   serialize :compare, Hash
   
   def fetch_description_from_github
-    array_datas = Github.repos.list user: "#{split(url)}"
+    array_datas = Github.repos.list user: "#{split(url)}", auto_pagination: true
     array_datas.body.each do |array_data|
       if array_data.clone_url == url
         description = array_data.description
