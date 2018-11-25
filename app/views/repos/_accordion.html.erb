@@ -1,0 +1,28 @@
+<div class="accordion" id="accordionExample"> 
+  <% @repo.compare.each_with_index do |(locale, missing_keys), index|  %>
+    <div class="card">
+      <div class="card-header" id="heading<%=index%>">
+        <h5 class="mb-0">
+          <span class="float-left"><%= locale %><p class="text-secondary font-italic float-right">(<%= missing_keys.count %>)</p></span> 
+            
+
+          <button class="btn btn-link float-right " type="button" data-toggle="collapse" data-target="#collapse-<%=index%>" aria-expanded="true" aria-controls="collapse-<%=index%>">
+          <i class="fa fa-caret-down fa-2x"></i>
+          </button>
+        </h5>
+      </div>
+      <div id="collapse-<%=index%>" class="collapse " aria-labelledby="heading<%=index%>" data-parent="#accordionExample">
+        <div class="card-body">
+          <% missing_keys.each do |element|  %>
+            <%= element %><br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="pb-3">
+  <span class="text-right text-danger">Total: <%= @repo.compare.keys.count > 0 ?  "#{@repo.compare.keys.count} locales missing key" : "#{@repo.compare.keys.count} locale missing key"%></span>
+  <span class="text-danger float-right font-italic">Created at: <%= time_ago_in_words(@repo.created_at) %></span> 
+</div>
+
