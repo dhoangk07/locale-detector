@@ -69,17 +69,15 @@ class Repo < ApplicationRecord
     return true if supported_locales.include?(file)
   end
 
-
-  def new_run_compare_yml_file
-    hash = {}
+  def run_compare_yml_file
     Dir.foreach(locale_path) do |file|
       basename = File.basename(file, '.yml')
       if match_locale(basename)
-        locale_file = FlattenKey.read_file_yml("#{locale_path}/#{file}")
-        locale_file.values.first.each do |locale, missing_keys| 
-          LocaleKey.create(locale:  "#{file}", 
-                           key:     locale, 
-                           value:   missing_keys, 
+        locale_files = FlattenedYml.flattened_version_of_yml("#{locale_path}/#{file}")
+        locale_files.each do |key, value|
+          LocaleKey.create(locale:  "#{file}".remove('.yml'), 
+                           key:     key, 
+                           value:   value, 
                            repo_id: self.id)
         end
       end
