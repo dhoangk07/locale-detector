@@ -69,20 +69,6 @@ class Repo < ApplicationRecord
     return true if supported_locales.include?(file)
   end
 
-  # def run_compare
-  #   hash = {}
-  #   Dir.foreach(locale_path) do |file|
-  #     # it does not work if it has another gem which supported locales
-  #     basename = File.basename(file, '.yml')
-  #     if match_locale(basename)
-  #       temp = CompareFile.compare('en.yml', file, self) 
-  #       hash[file] = temp 
-  #     end
-  #   end
-  #   result = hash.select{|k,v| v.present?}
-  #   self.update(compare: result)
-  #   self.compared!
-  # end
 
   def new_run_compare_yml_file
     hash = {}
@@ -98,6 +84,19 @@ class Repo < ApplicationRecord
         end
       end
     end
+  end
+
+  def run_compare
+    en_keys = LocaleKey.where(repo_id: self.id, locale: 'en').distinct.pluck(:key)
+    locale_lists = locale_keys.select('locale').where.not(locale: 'en').distinct 
+    hash = {}
+    locale_lists.each do |locale| 
+      keys = LocaleKey.where(repo_id: self.id, locale: locale.locale.remove('.yml')).distinct.pluck(:key)
+      different_keys = en_keys - keys
+      hash[locale.locale] = different_keys if different_keys != [] 
+    end
+    self.update(compare: hash)
+    self.compared!
   end
 
   def run_clone
