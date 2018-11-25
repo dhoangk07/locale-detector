@@ -9,7 +9,7 @@ set :deploy_to, "/home/deploy/locale-detector"
 role :resque_worker, "206.189.152.101"
 role :resque_scheduler, "206.189.152.101"
 
-set :workers, { "default" => 2, "high" => 1 }
+set :workers, { "default" => 1, "high" => 1, '*' => 1 }
 set :resque_environment_task, true
 set :resque_log_file, "log/resque.log"
 
