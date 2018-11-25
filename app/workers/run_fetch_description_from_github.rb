@@ -1,5 +1,5 @@
 class RunFetchDescriptionFromGithub
-  @queue = :fetch_description_queue
+  @queue = :default
 
   def self.perform(repo_id)
     repo = Repo.find(repo_id)

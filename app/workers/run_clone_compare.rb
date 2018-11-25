@@ -1,5 +1,5 @@
 class RunCloneCompare
-  @queue = :clone_queue
+  @queue = :default
 
   def self.perform(repo_id)
     repo = Repo.find(repo_id)
