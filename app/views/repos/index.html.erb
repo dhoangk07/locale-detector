@@ -1,6 +1,6 @@
 <div class="container py-5">
   <h3 class="text-capitalize text-success text-center">Listing of Repos</h3>
-  <%= render 'table_form', collection: @repos %>
+  <%= render 'card_bootstrap'%>
   <% count = Repo.count %>
   <p class="text-sm-right text-center text-danger float-right pr-4 font-italic"> Total: <%= count > 1 ? "#{count} Repos" : "#{count} Repo"%> </p> 
 </div>

@@ -1,8 +1,14 @@
 <% if repo.user == current_user %>
+  <button class="btn badge-info btn-sm " title="link"><a href="<%= repo.url %>" target="_blank" class='link_white'><i class="fa fa-link"></i></a></button>
   <%= link_to edit_repo_path(repo) do %>
     <button class="btn badge-info btn-sm" title="Edit" ><i class="fa fa-edit"></i></button>
   <% end %>
   <%= link_to repo_path(repo), method: :delete, data: { confirm: "Are you sure? "} do %>
     <button class="btn badge-info btn-sm" title="Destroy"><i class="fa fa-trash"></i></button> 
   <% end %>
+
 <% end %>
+
+
+
+
