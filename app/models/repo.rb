@@ -84,6 +84,12 @@ class Repo < ApplicationRecord
     end
   end
 
+  def self.update_locale_key_table
+    Repo.all.each do |repo|
+      repo.run_compare_yml_file if repo.locale_path_exist?
+    end
+  end
+
   def run_compare
     en_keys = LocaleKey.where(repo_id: self.id, locale: 'en').distinct.pluck(:key)
     locale_lists = locale_keys.select('locale').where.not(locale: 'en').distinct 
