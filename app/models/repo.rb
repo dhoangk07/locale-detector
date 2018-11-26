@@ -33,9 +33,13 @@ class Repo < ApplicationRecord
   has_many :subscribes,  dependent: :destroy
   has_many :locale_keys, dependent: :destroy
   serialize :compare, Hash
-  
+
   def fetch_description_from_github
-    array_datas = Github.repos.list user: "#{split(url)}", auto_pagination: true
+    # github = Github.new client_id: ENV['CLIENT_ID'], client_secret: ENV['APP_SECRET']
+    # github.authorize_url redirect_uri: 'http://localhost', scope: 'repo'
+    curl -i 'https://api.github.com/users/whatever?client_id=e2a52767a30a1eeb2f9c&client_secret=1ce30942734a0e61f235d21be837daf4988bb0b5'
+    array_datas = Github.repos.list user: split(url), auto_pagination: true
+    debugger
     array_datas.body.each do |array_data|
       if array_data.clone_url == url
         description = array_data.description
