@@ -35,12 +35,18 @@ class Repo < ApplicationRecord
   serialize :compare, Hash
 
   def fetch_description_from_github
-    # github = Github.new client_id: ENV['CLIENT_ID'], client_secret: ENV['APP_SECRET']
     # github.authorize_url redirect_uri: 'http://localhost', scope: 'repo'
-    curl -i 'https://api.github.com/users/whatever?client_id=e2a52767a30a1eeb2f9c&client_secret=1ce30942734a0e61f235d21be837daf4988bb0b5'
-    array_datas = Github.repos.list user: split(url), auto_pagination: true
+    # curl -i 'https://api.github.com/users/whatever?client_id=e2a52767a30a1eeb2f9c&client_secret=1ce30942734a0e61f235d21be837daf4988bb0b5'
+    # github = Github.new client_id: ENV['CLIENT_ID'], client_secret: ENV['APP_SECRET']
+    # github = Github.new client_id: ENV['CLIENT_ID'], client_secret: ENV['APP_SECRET']
+    # github = Github.new basic_auth: ":#{ENV['APP_SECRET']}"
+    # github.oauth.app.create ENV['CLIENT_ID'], client_secret: ENV['APP_SECRET']
+    # , client_id: 'e2a52767a30a1eeb2f9c', client_secret: '1ce30942734a0e61f235d21be837daf4988bb0b5'
+    github = Github.new client_id: ENV['CLIENT_ID'], client_secret: ENV['APP_SECRET']
     debugger
-    array_datas.body.each do |array_data|
+    res = github.repos.get(split(url), name)
+    # array_datas = Github.repos.list user: split(url), auto_pagination: true
+    res.body.each do |array_data|
       if array_data.clone_url == url
         description = array_data.description
         homepage = array_data.homepage
