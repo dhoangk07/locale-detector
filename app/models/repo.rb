@@ -23,8 +23,6 @@ class Repo < ApplicationRecord
       transitions from: [:cloned], to: :compared
     end
 
-    event :do_finishing do
-      transitions from: [:compared], to: :finished
     end
   end
   validate :valid_url?
