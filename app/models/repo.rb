@@ -54,7 +54,7 @@ class Repo < ApplicationRecord
   end
 
   def read_file_read_me
-    File.read("#{cloned_source_path}/README.md") if Dir.exist?("#{cloned_source_path}/README.md")
+    File.read("#{cloned_source_path}/README.md") if Dir.exist?(cloned_source_path)
   end
   
   def locale_path
