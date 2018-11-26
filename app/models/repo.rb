@@ -99,11 +99,14 @@ class Repo < ApplicationRecord
 
   def run_compare
     run_compare_yml_file
-    en_keys = LocaleKey.where(repo_id: self.id, locale: 'en').distinct.pluck(:key)
+    # en_keys = LocaleKey.where(repo_id: self.id, locale: 'en').distinct.pluck(:key)
+    # base_keys = LocaleKey.where(repo_id: self.id).distinct
+    # en_keys = base_keys.where(locale: 'en').pluck(:key)
     locale_lists = locale_keys.select('locale').where.not(locale: 'en').distinct 
     hash = {}
     locale_lists.each do |locale| 
       keys = LocaleKey.where(repo_id: self.id, locale: locale.locale.remove('.yml')).distinct.pluck(:key)
+      # keys = base_keys.where(locale: locale.locale.remove('.yml'))
       different_keys = en_keys - keys
       hash[locale.locale] = different_keys if different_keys != [] 
     end
@@ -128,7 +131,7 @@ class Repo < ApplicationRecord
 
   def self.detect_missing_keys_daily
     Repo.all.each do |repo|
-      if Dir.exists?(repo.locale_path) == false
+      if !Dir.exists?(repo.locale_path)
         repo.run_clone
       else
         repo.pull_code
