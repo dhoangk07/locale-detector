@@ -20,9 +20,7 @@ class Repo < ApplicationRecord
     end  
 
     event :do_comparing do
-      transitions from: [:cloned], to: :compared
-    end
-
+      transitions from: [:cloned, :created], to: :compared
     end
   end
   validate :valid_url?
