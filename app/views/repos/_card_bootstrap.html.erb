@@ -2,10 +2,10 @@
   <% @repos.each do |repo| %>
     <div class="col-4 px-1 pb-2">
       <div class="card-group">
-        <div class="card border-primary" style="max-height: 150px;">
-            <div class="card-body">
-              <h5 class="card-title text-capitalize text-primary"><%= link_to repo.name, repo_path(repo) %></h5>
-              <p class="card-text text-primary"><%=repo.description.truncate(40, separator: ' ') if repo.description.present?  %></p>
+        <div class="card border-primary" style="max-height: 170px;">
+            <div class="card-body py-2" >
+              <h5 class="card-title text-capitalize text-primary mb-2"><%= link_to repo.name, repo_path(repo) %></h5>
+              <p class="card-text text-primary mb-2"><%=repo.description.truncate(40, separator: ' ') if repo.description.present?  %></p>
               <span><%=render 'action', repo: repo %></span>
               <small class="text-muted">Create_at: <%= time_ago_in_words(repo.created_at)%></small>
             </div>
