@@ -100,12 +100,12 @@ class Repo < ApplicationRecord
       hash[locale.locale] = different_keys if different_keys != [] 
     end
     self.update(compare: hash)
-    self.do_comparing
+    self.do_comparing!
   end
 
   def run_clone
     Rugged::Repository.clone_at(self.url, cloned_source_path)
-    self.do_cloning
+    self.do_cloning!
   end
 
   def pull_code
