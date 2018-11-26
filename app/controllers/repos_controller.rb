@@ -2,7 +2,7 @@ class ReposController < ApplicationController
   before_action :find_repo, only: %i[edit update show destroy subscribe unsubscribe ]
   skip_before_action :authenticate_user!, only: %i[show index]
   def index
-    @repos = Repo.order(created_at: :DESC)
+    params[:search].present? ? @repos = Repo.search(params[:search]) : @repos = Repo.order(created_at: :DESC)
   end
   
   def new
@@ -57,9 +57,9 @@ class ReposController < ApplicationController
     redirect_to repo_path(@repo)
   end
 
-  def search
-    @repos = Repo.search(params[:search])
-  end
+  # def search
+  #   @repos = Repo.search(params[:search])
+  # end
 
   private
   def find_repo

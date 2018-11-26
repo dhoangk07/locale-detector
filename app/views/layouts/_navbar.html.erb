@@ -5,7 +5,7 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <div class="col-6 offset-1">
-      <%= form_tag search_repos_path, class: 'navbar-form navbar-left', method: :get do %>
+      <%= form_tag repos_path, class: 'navbar-form navbar-left', method: :get do %>
         <div class="form-inline my-2 my-lg-0 placeholder">
           <%= text_field_tag :search, params[:search], :class =>"form-control", :placeholder=>"Search" %>
         </div>
