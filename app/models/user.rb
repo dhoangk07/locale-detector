@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # create_table "users", force: :cascade do |t|
+  # Schema Users table
   #   t.datetime "created_at", null: false
   #   t.datetime "updated_at", null: false
   #   t.string "email", default: "", null: false
@@ -11,7 +11,6 @@ class User < ApplicationRecord
   #   t.datetime "remember_created_at"
   #   t.index ["email"], name: "index_users_on_email", unique: true
   #   t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  # end
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
   has_many :repos, dependent: :destroy
@@ -25,7 +24,6 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
       user.save
     end
-    
     user
   end
 
