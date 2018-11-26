@@ -26,7 +26,7 @@ class Repo < ApplicationRecord
   validates :name, :url, uniqueness: true, presence: true
   belongs_to :user
   has_many :subscribes,  dependent: :destroy
-  has_many :locale_keys, dependent: :destroy
+  has_many :locale_keys
   serialize :compare, Hash
   
   def fetch_description_from_github
