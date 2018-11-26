@@ -13,7 +13,6 @@ class Repo < ApplicationRecord
     state :created, initial: true
     state :cloned
     state :compared
-    state :finished
 
     event :do_cloning do 
       transitions from: [:created], to: :cloned
