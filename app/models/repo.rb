@@ -74,6 +74,19 @@ class Repo < ApplicationRecord
     return true if supported_locales.include?(file)
   end
 
+  def available_locales
+    result = []
+    Dir.foreach(locale_path) do |file|
+      basename = File.basename(file, '.yml')
+      result << file if match_locale(basename)
+    end
+    result.last
+  end
+
+  def without_multi_language_support?
+    return true if available_locales == 'en.yml'
+  end
+
   def run_compare_yml_file
     Dir.foreach(locale_path) do |file|
       basename = File.basename(file, '.yml')
