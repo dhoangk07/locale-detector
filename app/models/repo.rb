@@ -83,8 +83,8 @@ class Repo < ApplicationRecord
     result.last
   end
 
-  def without_multi_language_support?
-    return true if available_locales == 'en.yml'
+  def multi_language_support?
+    available_locales != ['en.yml']
   end
 
   def locale_keys_of_repo_existing?
