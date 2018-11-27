@@ -97,10 +97,10 @@ class Repo < ApplicationRecord
       if match_locale(basename)
         locale_files = FlattenedYml.flattened_version_of_yml("#{locale_path}/#{file}")
         locale_files.each do |key, value|
-          LocaleKey.create(locale:  "#{file}".remove('.yml'), 
-                           key:     key, 
-                           value:   value, 
-                           repo_id: self.id)
+          if locale_keys_of_repo_existing?
+            change_data_of_locale_key(update, file, key, value, self)
+          else
+            change_data_of_locale_key(create, file, key, value, self)
         end
       end
     end
