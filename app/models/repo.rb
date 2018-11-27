@@ -13,13 +13,18 @@ class Repo < ApplicationRecord
     state :created, initial: true
     state :cloned
     state :compared
+    state :pulled
 
     event :do_cloning do 
       transitions from: [:created], to: :cloned
     end  
 
     event :do_comparing do
-      transitions from: [:cloned], to: :compared
+      transitions from: [:cloned, :pulled], to: :compared
+    end
+
+    event :do_pulling do
+      transitions from: [:compared], to: :pulled
     end
   end
   validate :valid_url?
@@ -123,6 +128,7 @@ class Repo < ApplicationRecord
     rugged = Rugged::Repository.new(cloned_source_path)
     rugged.remotes['origin'].fetch
     rugged.checkout(rugged.branches["origin/master"], strategy: :force)
+    self.do_pulling!
   end
 
   def cloned_source_path
