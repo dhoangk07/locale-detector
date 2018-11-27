@@ -55,7 +55,7 @@ class Repo < ApplicationRecord
     end
   end
 
-  def split(url)
+  def user_name(url)
     %r{/([^/]+)/([^/]+)/?\z}o.match(url)[1]
   end
 
