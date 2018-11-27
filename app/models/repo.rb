@@ -80,7 +80,7 @@ class Repo < ApplicationRecord
       basename = File.basename(file, '.yml')
       result << file if match_locale?(basename)
     end
-    result.last
+    result
   end
 
   def multi_language_support?
