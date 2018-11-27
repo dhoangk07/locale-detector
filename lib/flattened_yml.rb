@@ -1,3 +1,5 @@
+require 'yaml'
+
 class FlattenedYml
   def self.process_hash(translations, current_key, hash)
     hash.each do |new_key, value|
@@ -17,16 +19,14 @@ class FlattenedYml
     else
       raise 'Unable to load target file!'
     end
-
-    require 'yaml'
-
-    yml_version = YAML::load(IO.read(target_file))
-    # p yml_version[locale]
-
-    if root.nil?
-      root = yml_version.keys.first
+    out_file = File.new("#{target_file}_out", "w")
+    File.open(file).each_line do |line|
+      line.gsub!(/\\\'/,"")
+      out_file.write(line)
     end
-
+    out_file.close
+    yml_version = YAML::load(IO.read("#{target_file}_out"))
+    root = yml_version.keys.first if root.nil?
     flattend_version = {}
     process_hash(flattend_version, '', yml_version[root])
     flattend_version
