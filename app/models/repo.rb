@@ -101,6 +101,7 @@ class Repo < ApplicationRecord
             change_data_of_locale_key(update, file, key, value, self)
           else
             change_data_of_locale_key(create, file, key, value, self)
+          end
         end
       end
     end
