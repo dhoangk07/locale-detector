@@ -59,6 +59,10 @@ class Repo < ApplicationRecord
     %r{/([^/]+)/([^/]+)/?\z}o.match(url)[1]
   end
 
+  def repo_name(url)
+    %r{/([^/]+)/([^/]+)/?\z}o.match(url)[2].remove('.git')
+  end
+
   def star_github_small
     "https://ghbtns.com/github-btn.html?user=#{split(url)}&repo=#{name}&type=star&count=true&size=small"
   end
