@@ -69,7 +69,7 @@ class Repo < ApplicationRecord
     Dir.exist?(locale_path)
   end
   
-  def match_locale(file)
+  def match_locale?(file)
     supported_locales = ["af", "ar", "az", "be", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de", "de_AT", "de_CH", "de_DE", "el", "el_CY", "en", "en_AU", "en_CA", "en_GB", "en_IE", "en_IN", "en_NZ", "en_US", "en_ZA", "en_CY", "eo", "es", "es_419", "es_AR", "es_CL", "es_CO", "es_CR", "es_EC", "es_ES", "es_MX", "es_NI", "es_PA", "es_PE", "es_US", "es_VE", "et", "eu", "fa", "fi", "fr", "fr_CA", "fr_CH", "fr_FR", "gl", "he", "hi", "hi_IN", "hr", "hu", "id", "is", "it", "it_CH", "ja", "ka", "km", "kn", "ko", "lb", "lo", "lt", "lv", "mk", "ml", "mn", "mr_IN", "ms", "nb", "ne", "nl", "nn", "oc", "or", "pa", "pl", "pt", "pt_BR", "rm", "ro", "ru", "sk", "sl", "sq", "sr", "sw", "ta", "te", "th", "tl", "tr", "tt", "ug", "ur", "uz", "vi", "wo", "zh_CN", "zh_HK", "zh_TW", "zh_YUE"]
     supported_locales.include?(file)
   end
@@ -78,7 +78,7 @@ class Repo < ApplicationRecord
     result = []
     Dir.foreach(locale_path) do |file|
       basename = File.basename(file, '.yml')
-      result << file if match_locale(basename)
+      result << file if match_locale?(basename)
     end
     result.last
   end
@@ -94,7 +94,7 @@ class Repo < ApplicationRecord
   def run_compare_yml_file
     Dir.foreach(locale_path) do |file|
       basename = File.basename(file, '.yml')
-      if match_locale(basename)
+      if match_locale?(basename)
         locale_files = FlattenedYml.flattened_version_of_yml("#{locale_path}/#{file}")
         locale_files.each do |key, value|
           if locale_keys_of_repo_existing?
