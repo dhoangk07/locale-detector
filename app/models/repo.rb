@@ -64,11 +64,11 @@ class Repo < ApplicationRecord
   end
 
   def star_github_small
-    "https://ghbtns.com/github-btn.html?user=#{split(url)}&repo=#{name}&type=star&count=true&size=small"
+    "https://ghbtns.com/github-btn.html?user=#{user_name(url)}&repo=#{name}&type=star&count=true&size=small"
   end
 
   def fork_github_small
-    "https://ghbtns.com/github-btn.html?user=#{split(url)}&repo=#{name}&type=fork&count=true&size=small"
+    "https://ghbtns.com/github-btn.html?user=#{user_name(url)}&repo=#{name}&type=fork&count=true&size=small"
   end
 
   def read_file_read_me
