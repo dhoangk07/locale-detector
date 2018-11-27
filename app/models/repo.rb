@@ -69,34 +69,39 @@ class Repo < ApplicationRecord
     Dir.exist?(locale_path)
   end
   
-  def match_locale(file)
+  def match_locale?(file)
     supported_locales = ["af", "ar", "az", "be", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de", "de_AT", "de_CH", "de_DE", "el", "el_CY", "en", "en_AU", "en_CA", "en_GB", "en_IE", "en_IN", "en_NZ", "en_US", "en_ZA", "en_CY", "eo", "es", "es_419", "es_AR", "es_CL", "es_CO", "es_CR", "es_EC", "es_ES", "es_MX", "es_NI", "es_PA", "es_PE", "es_US", "es_VE", "et", "eu", "fa", "fi", "fr", "fr_CA", "fr_CH", "fr_FR", "gl", "he", "hi", "hi_IN", "hr", "hu", "id", "is", "it", "it_CH", "ja", "ka", "km", "kn", "ko", "lb", "lo", "lt", "lv", "mk", "ml", "mn", "mr_IN", "ms", "nb", "ne", "nl", "nn", "oc", "or", "pa", "pl", "pt", "pt_BR", "rm", "ro", "ru", "sk", "sl", "sq", "sr", "sw", "ta", "te", "th", "tl", "tr", "tt", "ug", "ur", "uz", "vi", "wo", "zh_CN", "zh_HK", "zh_TW", "zh_YUE"]
-    return true if supported_locales.include?(file)
+    supported_locales.include?(file)
   end
 
   def available_locales
     result = []
     Dir.foreach(locale_path) do |file|
       basename = File.basename(file, '.yml')
-      result << file if match_locale(basename)
+      result << file if match_locale?(basename)
     end
-    result.last
+    result
   end
 
-  def without_multi_language_support?
-    return true if available_locales == 'en.yml'
+  def multi_language_support?
+    available_locales != ['en.yml']
+  end
+
+  def locale_keys_of_repo_existing?
+    LocaleKey.where(repo_id: self.id).present?
   end
 
   def run_compare_yml_file
     Dir.foreach(locale_path) do |file|
       basename = File.basename(file, '.yml')
-      if match_locale(basename)
+      if match_locale?(basename)
         locale_files = FlattenedYml.flattened_version_of_yml("#{locale_path}/#{file}")
         locale_files.each do |key, value|
-          LocaleKey.create(locale:  "#{file}".remove('.yml'), 
-                           key:     key, 
-                           value:   value, 
-                           repo_id: self.id)
+          if locale_keys_of_repo_existing?
+            change_data_of_locale_key(update, file, key, value, self)
+          else
+            change_data_of_locale_key(create, file, key, value, self)
+          end
         end
       end
     end
@@ -105,13 +110,10 @@ class Repo < ApplicationRecord
   def run_compare
     run_compare_yml_file
     en_keys = LocaleKey.where(repo_id: self.id, locale: 'en').distinct.pluck(:key)
-    # base_keys = LocaleKey.where(repo_id: self.id).distinct
-    # en_keys = base_keys.where(locale: 'en').pluck(:key)
     locale_lists = locale_keys.select('locale').where.not(locale: 'en').distinct 
     hash = {}
     locale_lists.each do |locale| 
       keys = LocaleKey.where(repo_id: self.id, locale: locale.locale.remove('.yml')).distinct.pluck(:key)
-      # keys = base_keys.where(locale: locale.locale.remove('.yml'))
       different_keys = en_keys - keys
       hash[locale.locale] = different_keys if different_keys != [] 
     end
