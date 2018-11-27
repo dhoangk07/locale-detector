@@ -43,16 +43,10 @@ class Repo < ApplicationRecord
     # github.oauth.app.create ENV['CLIENT_ID'], client_secret: ENV['APP_SECRET']
     # , client_id: 'e2a52767a30a1eeb2f9c', client_secret: '1ce30942734a0e61f235d21be837daf4988bb0b5'
     github = Github.new client_id: ENV['CLIENT_ID'], client_secret: ENV['APP_SECRET']
-    debugger
-    res = github.repos.get(split(url), name)
-    # array_datas = Github.repos.list user: split(url), auto_pagination: true
-    res.body.each do |array_data|
-      if array_data.clone_url == url
-        description = array_data.description
-        homepage = array_data.homepage
-        update(description: description, homepage: homepage)
-      end
-    end
+    result = github.repos.get(user_name(url), repo_name(url))
+    description = result.description
+    homepage = result.homepage
+    self.update(description: description, homepage: homepage)
   end
 
   def user_name(url)
