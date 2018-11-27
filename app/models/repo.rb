@@ -87,6 +87,10 @@ class Repo < ApplicationRecord
     return true if available_locales == 'en.yml'
   end
 
+  def locale_keys_of_repo_existing?
+    LocaleKey.where(repo_id: self.id).present?
+  end
+
   def run_compare_yml_file
     Dir.foreach(locale_path) do |file|
       basename = File.basename(file, '.yml')
