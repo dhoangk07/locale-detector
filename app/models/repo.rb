@@ -78,27 +78,16 @@ class Repo < ApplicationRecord
     supported_locales.include?(file)
   end
 
-  def available_locales
-    result = []
-    Dir.foreach(locale_path) do |file|
-      basename = File.basename(file, '.yml')
-      result << file if match_locale?(basename)
-    end
-    result
-  end
-
-  def multi_language_support?
-    update(multi_language_support?: true) if available_locales != ['en.yml']
-  end
-
   def locale_keys_of_repo_existing?
     LocaleKey.where(repo_id: self.id).present?
   end
 
   def change_data_on_localekeys_table
+    available_locales = []
     Dir.foreach(locale_path) do |file|
       basename = File.basename(file, '.yml')
       if match_locale?(basename)
+        available_locales << file
         locale_files = FlattenYmlFile.perform("#{locale_path}/#{file}")
         locale_files.each do |key, value|
           if locale_keys_of_repo_existing? 
@@ -109,6 +98,7 @@ class Repo < ApplicationRecord
         end
       end
     end
+    update(multi_language_support?: true) if available_locales != ['en.yml']
   end
 
   def run_compare
