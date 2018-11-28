@@ -27,5 +27,5 @@
       <div><h4 class="text-primary pt-3">The process is about to compare. Please take a while ...</h4></div>
     <% end %>
     <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab"><%= render 'description', repo: @repo %></div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><%= markdown(@repo.read_file_read_me) %></div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><%= markdown(@repo.readme) %></div>
   </div>
