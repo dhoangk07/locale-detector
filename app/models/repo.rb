@@ -104,10 +104,11 @@ class Repo < ApplicationRecord
   def run_compare
     change_data_on_localekeys_table
     en_keys = LocaleKey.where(repo_id: self.id, locale: 'en').distinct.pluck(:key)
-    locale_lists = locale_keys.select('locale').where.not(locale: 'en').distinct 
+    available_locales = locale_keys.select('locale').where.not(locale: 'en').distinct 
     hash = {}
     locale_lists.each do |locale| 
       keys = LocaleKey.where(repo_id: self.id, locale: locale.locale.remove('.yml')).distinct.pluck(:key)
+    available_locales.each do |name| 
       different_keys = en_keys - keys
       hash[locale.locale] = different_keys if different_keys != [] 
     end
