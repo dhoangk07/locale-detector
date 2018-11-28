@@ -12,8 +12,11 @@ class ReposController < ApplicationController
   def create
     @repo = current_user.repos.build(repo_params)
     if @repo.save
-      Resque.enqueue(RunCloneCompare, @repo.id)
-      Resque.enqueue(RunFetchDescriptionFromGithub, @repo.id)
+      Resque.enqueue(RunClone, @repo.id)
+      Resque.enqueue(RunUpdateReposTable)
+      Resque.enqueue(RunChangeDataOnLocaleKeysTable, @repo.id)
+      Resque.enqueue(RunCompare, @repo.id)
+      Resque.enqueue(RunSendEmail, @repo.id)
       flash[:success] = "#{@repo.name.capitalize} created successfully"
       redirect_to repos_path
     else

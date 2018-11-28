@@ -177,6 +177,14 @@ class Repo < ApplicationRecord
     end
   end
 
+  def self.update_repos_table
+    Repo.find_each do |repo|
+      repo.fetch_description_from_github
+      repo.read_file_read_me
+      repo.convert_to_git_path
+      repo.locale_path_exist?
+    end
+  end
   def self.count_search(search)
     self.search(search).count
   end
