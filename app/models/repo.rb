@@ -149,7 +149,7 @@ class Repo < ApplicationRecord
   end
 
   def self.detect_missing_keys_daily
-    Repo.all.each do |repo|
+    Repo.find_each do |repo|
       if !Dir.exists?(repo.locale_path)
         repo.run_clone
       else
