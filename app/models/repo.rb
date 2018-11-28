@@ -118,7 +118,7 @@ class Repo < ApplicationRecord
 
   def run_clone
     Rugged::Repository.clone_at(self.url, cloned_source_path)
-    self.do_cloning!
+    do_cloning!
   end
 
   def pull_code
