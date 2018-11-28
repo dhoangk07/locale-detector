@@ -95,7 +95,7 @@ class Repo < ApplicationRecord
     LocaleKey.where(repo_id: self.id).present?
   end
 
-  def run_compare_yml_file
+  def change_data_on_localekeys_table
     Dir.foreach(locale_path) do |file|
       basename = File.basename(file, '.yml')
       if match_locale?(basename)
@@ -112,7 +112,7 @@ class Repo < ApplicationRecord
   end
 
   def run_compare
-    run_compare_yml_file
+    change_data_on_localekeys_table
     en_keys = LocaleKey.where(repo_id: self.id, locale: 'en').distinct.pluck(:key)
     locale_lists = locale_keys.select('locale').where.not(locale: 'en').distinct 
     hash = {}
