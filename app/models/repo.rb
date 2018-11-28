@@ -77,7 +77,7 @@ class Repo < ApplicationRecord
   end
 
   def locale_path_exist?
-    Dir.exist?(locale_path)
+    update(locale_exist?: true) if Dir.exist?(locale_path)
   end
   
   def match_locale?(file)
