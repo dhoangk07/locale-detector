@@ -1,6 +1,6 @@
 require 'yaml'
 
-class FlattenedYml
+class FlattenYmlFile
   def self.process_hash(translations, current_key, hash)
     hash.each do |new_key, value|
       combined_key = [current_key, new_key].delete_if { |k| k == '' }.join(".")
@@ -12,7 +12,7 @@ class FlattenedYml
     end
   end
 
-  def self.flattened_version_of_yml file=nil, root=nil
+  def self.perform file=nil, root=nil
     target_file = nil
     if !file.nil?
       target_file = file

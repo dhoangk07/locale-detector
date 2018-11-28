@@ -99,7 +99,7 @@ class Repo < ApplicationRecord
     Dir.foreach(locale_path) do |file|
       basename = File.basename(file, '.yml')
       if match_locale?(basename)
-        locale_files = FlattenedYml.flattened_version_of_yml("#{locale_path}/#{file}")
+        locale_files = FlattenYmlFile.perform("#{locale_path}/#{file}")
         locale_files.each do |key, value|
           if locale_keys_of_repo_existing? 
             self.locale_keys.where(locale: basename, key: key).update(value: value)
