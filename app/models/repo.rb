@@ -111,8 +111,8 @@ class Repo < ApplicationRecord
       different_keys = en_keys - keys
       hash[locale.locale] = different_keys if different_keys != [] 
     end
-    self.update(compare: hash)
-    self.do_comparing!
+    update(compare: hash)
+    do_comparing!
   end
 
   def run_clone
@@ -124,7 +124,7 @@ class Repo < ApplicationRecord
     rugged = Rugged::Repository.new(cloned_source_path)
     rugged.remotes['origin'].fetch
     rugged.checkout(rugged.branches["origin/master"], strategy: :force)
-    self.do_pulling!
+    do_pulling!
   end
 
   def cloned_source_path
