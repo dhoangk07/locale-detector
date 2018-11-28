@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_28_025625) do
+ActiveRecord::Schema.define(version: 2018_11_28_030516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2018_11_28_025625) do
     t.string "aasm_state"
     t.text "readme"
     t.boolean "locale_exist?"
+    t.boolean "multi_language_support?"
   end
 
   create_table "subscribes", force: :cascade do |t|

@@ -95,7 +95,7 @@ class Repo < ApplicationRecord
   end
 
   def multi_language_support?
-    available_locales != ['en.yml']
+    update(multi_language_support?: true) if available_locales != ['en.yml']
   end
 
   def locale_keys_of_repo_existing?
