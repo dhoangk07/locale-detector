@@ -62,16 +62,12 @@ class ReposController < ApplicationController
     redirect_to repo_path(@repo)
   end
 
-  # def search
-  #   @repos = Repo.search(params[:search])
-  # end
-
   private
-  def find_repo
-      @repo = Repo.find(params[:id])
-  end
-  
-  def repo_params
-    params.require(:repo).permit(:url, :name, :user_id, :compare)
-  end
+    def find_repo
+        @repo = Repo.find(params[:id])
+    end
+    
+    def repo_params
+      params.require(:repo).permit(:url, :name, :user_id, :compare)
+    end
 end
