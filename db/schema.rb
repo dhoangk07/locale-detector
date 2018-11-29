@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_29_090130) do
+ActiveRecord::Schema.define(version: 2018_11_29_090641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 2018_11_29_090130) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "repo_id"
+    t.index ["key"], name: "index_locale_keys_on_key"
+    t.index ["locale"], name: "index_locale_keys_on_locale"
+    t.index ["repo_id"], name: "index_locale_keys_on_repo_id"
+    t.index ["value"], name: "index_locale_keys_on_value"
   end
 
   create_table "repos", force: :cascade do |t|
