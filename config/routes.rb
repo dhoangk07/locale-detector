@@ -8,8 +8,15 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 
-  root to: "repos#index"
-  authenticate :user do
+  resque_web_constraint = lambda do |request|
+    current_user = request.env['warden'].user
+    current_user.present? && current_user.respond_to?(:is_admin?) && current_user.is_admin?
+  end
+
+  constraints resque_web_constraint do
     mount Resque::Server, at: '/resque'  
   end
+  
+  root to: "repos#index"
 end
+
