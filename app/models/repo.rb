@@ -34,7 +34,7 @@ class Repo < ApplicationRecord
   has_many :locale_keys
   serialize :compare, Hash
 
-  def stop_send_email_for_user_subscribed(user)
+  def stop_send_email(user)
     Subscribe.where(user_id: user.id, repo_id: self.id).delete_all
   end
 
