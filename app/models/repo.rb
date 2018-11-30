@@ -185,6 +185,10 @@ class Repo < ApplicationRecord
     end
   end
 
+  def stop_send_email(user)
+    Subscribe.where(user_id: user.id, repo_id: self.id).delete_all
+  end
+
   def self.count_search(search)
     self.search(search).count
   end

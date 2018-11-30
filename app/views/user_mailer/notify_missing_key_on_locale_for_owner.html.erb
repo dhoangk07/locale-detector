@@ -8,6 +8,9 @@
     <p>
       The <%= @repo.name.capitalize %> had the keys which are not translated to correspond with locale 'en.yml', please take a look at <%= link_to "Show", repo_url(@repo)%> for more detail.
     </p>
+
+    <p>If you do not want to receive this email please press button <%= link_to 'Unsubscribe', 
+       stop_send_email_for_owner_repo_repo_url(@repo)%></p>
     <p>Thank you</p>
   </body>
 </html>
