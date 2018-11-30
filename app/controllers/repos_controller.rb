@@ -1,5 +1,5 @@
 class ReposController < ApplicationController
-  before_action :find_repo, only: %i[edit update show destroy subscribe unsubscribe ]
+  before_action :find_repo, only: %i[edit update show destroy subscribe unsubscribe stop_send_email_for_subscriber ]
   skip_before_action :authenticate_user!, only: %i[show index]
   def index
     params[:search].present? ? @repos = Repo.search(params[:search]) : @repos = Repo.order(created_at: :DESC)
@@ -58,6 +58,12 @@ class ReposController < ApplicationController
 
   def unsubscribe
     @repo.subscribes.where(user_id: current_user.id).destroy_all
+    flash[:danger] = "Unsubscribed #{@repo.name.capitalize} successfully"
+    redirect_to repo_path(@repo)
+  end
+
+  def stop_send_email_for_subscriber
+    @repo.stop_send_email_for_user_subscribed(current_user)
     flash[:danger] = "Unsubscribed #{@repo.name.capitalize} successfully"
     redirect_to repo_path(@repo)
   end
