@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     post :subscribe, on: :member
     delete :unsubscribe, on: :member
     get :search, on: :collection
-    get :stop_send_email_for_user_subscribed, on: :member
+    get :email_unsubscribed, on: :member
   end
 
   resque_web_constraint = lambda do |request|
