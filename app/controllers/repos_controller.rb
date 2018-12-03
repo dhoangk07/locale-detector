@@ -63,8 +63,8 @@ class ReposController < ApplicationController
   end
 
   def stop_send_email_for_owner_repo
-    current_user.update(receive_email?: false)
-    flash[:danger] = "Email will not sent to #{current_user.email}"
+    @repo.update(receive_email?: false)
+    flash[:danger] = "Email will not sent to #{@repo.user.email}"
     redirect_to repo_path(@repo)
   end
 
