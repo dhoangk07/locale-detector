@@ -3,10 +3,13 @@
     <%= f.input :url, label: false, placeholder: "Enter Url"  %>
     <%= f.input :name, label: false, placeholder: "Enter Name"  %>
     <% if action_name == 'edit' %>
+      <%= f.input_field :receive_email?, as: :boolean, checked_value: true, unchecked_value: false%>
+      <%= f.label :"receive_email?" %>
       <%= f.submit 'Edit', class: 'btn btn-primary btn-block btn-lg' %>
     <% else %>
       <%= f.submit 'Create', class: 'btn btn-primary btn-block btn-lg' %>
     <% end %>
   <% end %>
 </div>
+
 

@@ -74,6 +74,6 @@ class ReposController < ApplicationController
     end
     
     def repo_params
-      params.require(:repo).permit(:url, :name, :user_id, :compare)
+      params.require(:repo).permit(:url, :name, :user_id, :compare, :receive_email)
     end
 end
