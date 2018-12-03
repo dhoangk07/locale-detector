@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
    default from: 'notifications@locale-detector.space'
  
   def notify_missing_key_on_locale_for_owner(user, repo)
-    if user.receive_email? == true
+    if repo.receive_email == true
       @user = user
       @repo = repo
       @url  = 'http://example.com/login'
