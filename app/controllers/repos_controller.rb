@@ -70,10 +70,11 @@ class ReposController < ApplicationController
 
   private
     def find_repo
-        @repo = Repo.find(params[:id])
+      @repo = Repo.find(params[:id])
     end
     
     def repo_params
       params.require(:repo).permit(:url, :name, :user_id, :compare, :receive_email)
     end
 end
+
