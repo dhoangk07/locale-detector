@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   constraints resque_web_constraint do
     mount Resque::Server, at: '/resque'  
   end
-  
   root to: "repos#index"
 end
 
