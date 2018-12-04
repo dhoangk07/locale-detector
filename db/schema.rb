@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_04_003053) do
+ActiveRecord::Schema.define(version: 2018_12_04_003424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 2018_12_04_003053) do
     t.string "homepage"
     t.string "aasm_state"
     t.text "readme"
-    t.boolean "locale_exist?"
-    t.boolean "multi_language_support?"
+    t.boolean "locale_exist"
+    t.boolean "multi_language_support"
     t.boolean "receive_email", default: true
     t.index ["url"], name: "index_repos_on_url"
     t.index ["user_id"], name: "index_repos_on_user_id"

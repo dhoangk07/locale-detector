@@ -74,7 +74,7 @@ class Repo < ApplicationRecord
   end
 
   def locale_path_exist?
-    update(locale_exist?: true) if Dir.exist?(locale_path)
+    update(locale_exist: true) if Dir.exist?(locale_path)
   end
   
   def match_locale?(file)
@@ -102,7 +102,7 @@ class Repo < ApplicationRecord
         end
       end
     end
-    update(multi_language_support?: true) if available_locales != ['en.yml']
+    update(multi_language_support: true) if available_locales != ['en.yml']
   end
 
   def run_compare
