@@ -34,10 +34,6 @@ class Repo < ApplicationRecord
   has_many :locale_keys
   serialize :compare, Hash
 
-  def stop_send_email(user)
-    Subscribe.where(user_id: user.id, repo_id: self.id).delete_all
-  end
-
   def fetch_description_from_github
     github = Github.new client_id: ENV['CLIENT_ID'], client_secret: ENV['APP_SECRET']
     result = github.repos.get(user_name(url), repo_name(url))
